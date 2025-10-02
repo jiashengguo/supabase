@@ -66,18 +66,6 @@ export function EnhancedSidebar() {
             ))}
           </select>
         </div>
-
-        {/* Search Input */}
-        <div>
-          {/* @ts-expect-error - React 19 compatibility pending Radix UI update */}
-          <Input
-            type="text"
-            placeholder="Search tables..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={searchIcon}
-          />
-        </div>
       </div>
 
       {/* Table List */}

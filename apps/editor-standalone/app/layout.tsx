@@ -1,12 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
+import './main.css'
 import { Providers } from '@/components/providers'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
 
 export const metadata: Metadata = {
   title: 'Table Editor',
@@ -20,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>
