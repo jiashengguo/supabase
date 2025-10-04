@@ -1,7 +1,5 @@
 packages:
-  - apps/*
-  - packages/*
-  - e2e/*
+  - apps/studio-clone
 
 catalog:
   '@supabase/auth-js': 2.72.0-rc.11
