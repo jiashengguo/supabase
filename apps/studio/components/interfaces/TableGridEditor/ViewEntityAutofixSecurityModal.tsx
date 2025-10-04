@@ -2,7 +2,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { useViewDefinitionQuery } from 'data/database/view-definition-query'
-import { lintKeys } from 'data/lint/keys'
 import { useExecuteSqlMutation } from 'data/sql/execute-sql-mutation'
 import { Entity, isViewLike } from 'data/table-editor/table-editor-types'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
@@ -33,17 +32,6 @@ export default function ViewEntityAutofixSecurityModal({
       enabled: isAutofixViewSecurityModalOpen && isViewLike(table),
     }
   )
-
-  const { mutate: execute } = useExecuteSqlMutation({
-    onSuccess: async () => {
-      toast.success('View security changed successfully')
-      setIsAutofixViewSecurityModalOpen(false)
-      await queryClient.invalidateQueries(lintKeys.lint(project?.ref))
-    },
-    onError: (error) => {
-      toast.error(`Failed to autofix view security: ${error.message}`)
-    },
-  })
 
   function handleConfirm() {
     const sql = `

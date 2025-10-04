@@ -15,9 +15,7 @@ import {
 import { ProjectIndexPageLink } from 'data/prefetchers/project.$ref'
 import { useHideSidebar } from 'hooks/misc/useHideSidebar'
 import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
-import { useLints } from 'hooks/misc/useLints'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { Home } from 'icons'
 import { useAppStateSnapshot } from 'state/app-state'
@@ -41,10 +39,6 @@ import {
   Sidebar as SidebarPrimitive,
   useSidebar,
 } from 'ui'
-import {
-  useIsAPIDocsSidePanelEnabled,
-  useUnifiedLogsPreview,
-} from './App/FeaturePreview/FeaturePreviewContext'
 
 export const ICON_SIZE = 32
 export const ICON_STROKE_WIDTH = 1.5
@@ -222,8 +216,6 @@ const ProjectLinks = () => {
   const { ref } = useParams()
   const { data: project } = useSelectedProjectQuery()
   const snap = useAppStateSnapshot()
-  const isNewAPIDocsEnabled = useIsAPIDocsSidePanelEnabled()
-  const { securityLints, errorLints } = useLints()
   const showReports = useIsFeatureEnabled('reports:all')
 
   const activeRoute = router.pathname.split('/')[3]
@@ -248,10 +240,8 @@ const ProjectLinks = () => {
     realtime: realtimeEnabled,
   })
 
-  const { isEnabled: isUnifiedLogsEnabled } = useUnifiedLogsPreview()
-
   const otherRoutes = generateOtherRoutes(ref, project, {
-    unifiedLogs: isUnifiedLogsEnabled,
+    unifiedLogs: true,
     showReports,
   })
   const settingsRoutes = generateSettingsRoutes(ref, project)
@@ -291,7 +281,7 @@ const ProjectLinks = () => {
       <Separator className="w-[calc(100%-1rem)] mx-auto" />
       <SidebarGroup className="gap-0.5">
         {otherRoutes.map((route, i) => {
-          if (route.key === 'api' && isNewAPIDocsEnabled) {
+          if (route.key === 'api') {
             return (
               <SideBarNavLink
                 key={`other-routes-${i}`}
@@ -308,7 +298,6 @@ const ProjectLinks = () => {
           } else if (route.key === 'advisors') {
             return (
               <div className="relative" key={route.key}>
-                {ActiveDot(errorLints, securityLints)}
                 <SideBarNavLink
                   key={`other-routes-${i}`}
                   route={route}
@@ -353,9 +342,8 @@ const OrganizationLinks = () => {
   const router = useRouter()
   const { slug } = useParams()
 
-  const { data: org } = useSelectedOrganizationQuery()
   const isUserMFAEnabled = useIsMFAEnabled()
-  const disableAccessMfa = org?.organization_requires_mfa && !isUserMFAEnabled
+  const disableAccessMfa = !isUserMFAEnabled
 
   const showBilling = useIsFeatureEnabled('billing:all')
 

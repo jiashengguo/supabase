@@ -7,7 +7,6 @@ import { LOCAL_STORAGE_KEYS, useParams } from 'common'
 import AlertError from 'components/ui/AlertError'
 import { InlineLink } from 'components/ui/InlineLink'
 import { User, useUsersInfiniteQuery } from 'data/auth/users-infinite-query'
-import { useCustomAccessTokenHookDetails } from 'hooks/misc/useCustomAccessTokenHookDetails'
 import { useLocalStorage } from 'hooks/misc/useLocalStorage'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useRoleImpersonationStateSnapshot } from 'state/role-impersonation-state'
@@ -28,7 +27,6 @@ import {
   TabsTrigger_Shadcn_,
 } from 'ui'
 import { InfoTooltip } from 'ui-patterns/info-tooltip'
-import { getAvatarUrl, getDisplayName } from '../Auth/Users/Users.utils'
 
 type AuthenticatorAssuranceLevels = 'aal1' | 'aal2'
 
@@ -78,8 +76,6 @@ const UserImpersonationSelector = () => {
     state.role.userType === 'external' &&
     state.role.externalAuth
 
-  const customAccessTokenHookDetails = useCustomAccessTokenHookDetails(project?.ref)
-
   const [isImpersonateLoading, setIsImpersonateLoading] = useState(false)
 
   async function impersonateUser(user: User) {
@@ -93,23 +89,14 @@ const UserImpersonationSelector = () => {
       return updated.slice(-6)
     })
 
-    if (customAccessTokenHookDetails?.type === 'https') {
-      toast.info(
-        'Please note that HTTPS custom access token hooks are not yet supported in the dashboard.'
-      )
-    }
-
     try {
-      await state.setRole(
-        {
-          type: 'postgrest',
-          role: 'authenticated',
-          userType: 'native',
-          user,
-          aal,
-        },
-        customAccessTokenHookDetails
-      )
+      await state.setRole({
+        type: 'postgrest',
+        role: 'authenticated',
+        userType: 'native',
+        user,
+        aal,
+      })
     } catch (error) {
       toast.error(`Failed to impersonate user: ${(error as ResponseError).message}`)
     }
@@ -130,19 +117,16 @@ const UserImpersonationSelector = () => {
       return
     }
     try {
-      await state.setRole(
-        {
-          type: 'postgrest',
-          role: 'authenticated',
-          userType: 'external',
-          externalAuth: {
-            sub: externalUserId,
-            additionalClaims: parsedClaims,
-          },
-          aal,
+      await state.setRole({
+        type: 'postgrest',
+        role: 'authenticated',
+        userType: 'external',
+        externalAuth: {
+          sub: externalUserId,
+          additionalClaims: parsedClaims,
         },
-        customAccessTokenHookDetails
-      )
+        aal,
+      })
     } catch (error) {
       toast.error(`Failed to impersonate user: ${(error as ResponseError).message}`)
     }

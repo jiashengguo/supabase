@@ -4,34 +4,20 @@ import { useRouter } from 'next/router'
 import { forwardRef, Fragment, PropsWithChildren, ReactNode, useEffect, useState } from 'react'
 
 import { useParams } from 'common'
-import { CreateBranchModal } from 'components/interfaces/BranchManagement/CreateBranchModal'
-import ProjectAPIDocs from 'components/interfaces/ProjectAPIDocs/ProjectAPIDocs'
-import { AIAssistant } from 'components/ui/AIAssistantPanel/AIAssistant'
 import { Loading } from 'components/ui/Loading'
-import { ResourceExhaustionWarningBanner } from 'components/ui/ResourceExhaustionWarningBanner/ResourceExhaustionWarningBanner'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { withAuth } from 'hooks/misc/withAuth'
 import { useHotKey } from 'hooks/ui/useHotKey'
 import { PROJECT_STATUS } from 'lib/constants'
-import { useAiAssistantStateSnapshot } from 'state/ai-assistant-state'
 import { useAppStateSnapshot } from 'state/app-state'
 import { useDatabaseSelectorStateSnapshot } from 'state/database-selector'
 import { cn, ResizableHandle, ResizablePanel, ResizablePanelGroup } from 'ui'
 import MobileSheetNav from 'ui-patterns/MobileSheetNav/MobileSheetNav'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
-import BuildingState from './BuildingState'
-import ConnectingState from './ConnectingState'
+
 import { LoadingState } from './LoadingState'
-import { ProjectPausedState } from './PausedState/ProjectPausedState'
-import { PauseFailedState } from './PauseFailedState'
-import PausingState from './PausingState'
+
 import ProductMenuBar from './ProductMenuBar'
-import { ResizingState } from './ResizingState'
-import RestartingState from './RestartingState'
-import { RestoreFailedState } from './RestoreFailedState'
-import RestoringState from './RestoringState'
-import { UpgradingState } from './UpgradingState'
 
 // [Joshen] This is temporary while we unblock users from managing their project
 // if their project is not responding well for any reason. Eventually needs a bit of an overhaul
@@ -88,20 +74,17 @@ const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<ProjectLayout
   ) => {
     const router = useRouter()
     const [isClient, setIsClient] = useState(false)
-    const { data: selectedOrganization } = useSelectedOrganizationQuery()
+
     const { data: selectedProject } = useSelectedProjectQuery()
 
     const { mobileMenuOpen, showSidebar, setMobileMenuOpen } = useAppStateSnapshot()
-    const aiSnap = useAiAssistantStateSnapshot()
-
-    useHotKey(() => aiSnap.toggleAssistant(), 'i', [aiSnap])
 
     const editor = useEditorType()
     const forceShowProductMenu = editor === undefined
     const sideBarIsOpen = forceShowProductMenu || showSidebar
 
     const projectName = selectedProject?.name
-    const organizationName = selectedOrganization?.name
+    const organizationName = ''
 
     const isPaused = selectedProject?.status === PROJECT_STATUS.INACTIVE
     const showProductMenu = selectedProject
@@ -205,19 +188,16 @@ const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<ProjectLayout
                   >
                     {showPausedState ? (
                       <div className="mx-auto my-16 w-full h-full max-w-7xl flex items-center">
-                        <div className="w-full">
-                          <ProjectPausedState product={product} />
-                        </div>
+                        <div className="w-full"></div>
                       </div>
                     ) : (
                       <ContentWrapper isLoading={isLoading} isBlocking={isBlocking}>
-                        <ResourceExhaustionWarningBanner />
                         {children}
                       </ContentWrapper>
                     )}
                   </main>
                 </ResizablePanel>
-                {isClient && aiSnap.open && (
+                {isClient && false && (
                   <>
                     <ResizableHandle withHandle />
                     <ResizablePanel
@@ -231,17 +211,13 @@ const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<ProjectLayout
                         'md:absolute md:h-auto md:w-3/4',
                         'xl:relative xl:border-l-0'
                       )}
-                    >
-                      <AIAssistant className="w-full h-[100dvh] md:h-full max-h-[100dvh]" />
-                    </ResizablePanel>
+                    ></ResizablePanel>
                   </>
                 )}
               </ResizablePanelGroup>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
-        <CreateBranchModal />
-        <ProjectAPIDocs />
         <MobileSheetNav
           open={mobileMenuOpen}
           onOpenChange={setMobileMenuOpen}
@@ -349,10 +325,6 @@ const ContentWrapper = ({ isLoading, isBlocking = true, children }: ContentWrapp
 
   if (isResizing && !isBackupsPage) {
     return <ResizingState />
-  }
-
-  if (isProjectUpgrading && !isBackupsPage) {
-    return <UpgradingState />
   }
 
   if (isProjectPausing) {

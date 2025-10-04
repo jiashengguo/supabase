@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { useParams } from 'common'
 import { useBreakpoint } from 'common/hooks/useBreakpoint'
-import { ExportDialog } from 'components/grid/components/header/ExportDialog'
 import { parseSupaTable } from 'components/grid/SupabaseGrid.utils'
 import { SupaTable } from 'components/grid/types'
 import { ProtectedSchemaWarning } from 'components/interfaces/Database/ProtectedSchemaWarning'
@@ -283,15 +282,6 @@ export const TableEditorMenu = () => {
           )}
         </div>
       </div>
-
-      <ExportDialog
-        ignoreRoleImpersonation
-        table={tableToExport}
-        open={!!tableToExport}
-        onOpenChange={(open) => {
-          if (!open) setTableToExport(undefined)
-        }}
-      />
     </>
   )
 }

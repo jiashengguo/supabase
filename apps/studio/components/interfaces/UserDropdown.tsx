@@ -26,7 +26,6 @@ import {
   singleThemes,
 } from 'ui'
 import { useSetCommandMenuOpen } from 'ui-patterns/CommandMenu'
-import { useFeaturePreviewModal } from './App/FeaturePreview/FeaturePreviewContext'
 
 export function UserDropdown() {
   const router = useRouter()

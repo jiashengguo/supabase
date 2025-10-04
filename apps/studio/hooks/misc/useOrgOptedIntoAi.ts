@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-import { subscriptionHasHipaaAddon } from 'components/interfaces/Billing/Subscription/Subscription.utils'
-import { useProjectSettingsV2Query } from 'data/config/project-settings-v2-query'
 import { useOrgSubscriptionQuery } from 'data/subscriptions/org-subscription-query'
 import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
@@ -61,17 +59,11 @@ export function useOrgAiOptInLevel(): {
   const isOptedIntoAI = level !== 'disabled'
 
   const { data: subscription } = useOrgSubscriptionQuery({ orgSlug: selectedOrganization?.slug })
-  const hasHipaaAddon = subscriptionHasHipaaAddon(subscription)
-
-  const { data: projectSettings } = useProjectSettingsV2Query({ projectRef: selectedProject?.ref })
-  const isProjectSensitive = !!projectSettings?.is_sensitive
-
-  const preventProjectFromUsingAI = hasHipaaAddon && isProjectSensitive
 
   // [Joshen] For CLI / self-host, we'd default to 'schema' as opt in level
   const aiOptInLevel = !IS_PLATFORM
     ? 'schema'
-    : (isOptedIntoAI && !selectedProject) || (isOptedIntoAI && !preventProjectFromUsingAI)
+    : (isOptedIntoAI && !selectedProject) || isOptedIntoAI
       ? level
       : 'disabled'
   const includeSchemaMetadata = !IS_PLATFORM || aiOptInLevel !== 'disabled'
@@ -79,6 +71,6 @@ export function useOrgAiOptInLevel(): {
   return {
     aiOptInLevel,
     includeSchemaMetadata,
-    isHipaaProjectDisallowed: preventProjectFromUsingAI,
+    isHipaaProjectDisallowed: false,
   }
 }

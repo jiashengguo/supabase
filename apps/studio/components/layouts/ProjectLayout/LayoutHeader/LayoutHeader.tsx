@@ -4,19 +4,12 @@ import Link from 'next/link'
 import { ReactNode, useMemo, useState } from 'react'
 
 import { useParams } from 'common'
-import { useIsBranching2Enabled } from 'components/interfaces/App/FeaturePreview/FeaturePreviewContext'
-import { Connect } from 'components/interfaces/Connect/Connect'
 import { LocalDropdown } from 'components/interfaces/LocalDropdown'
 import { UserDropdown } from 'components/interfaces/UserDropdown'
-import { AssistantButton } from 'components/layouts/AppLayout/AssistantButton'
-import { BranchDropdown } from 'components/layouts/AppLayout/BranchDropdown'
 import { InlineEditorButton } from 'components/layouts/AppLayout/InlineEditorButton'
-import { OrganizationDropdown } from 'components/layouts/AppLayout/OrganizationDropdown'
-import { ProjectDropdown } from 'components/layouts/AppLayout/ProjectDropdown'
 import EditorPanel from 'components/ui/EditorPanel/EditorPanel'
 import { getResourcesExceededLimitsOrg } from 'components/ui/OveragesBanner/OveragesBanner.utils'
 import { useOrgUsageQuery } from 'data/usage/org-usage-query'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useHotKey } from 'hooks/ui/useHotKey'
 import { IS_PLATFORM } from 'lib/constants'
@@ -24,12 +17,8 @@ import { useAppStateSnapshot } from 'state/app-state'
 import { Badge, cn } from 'ui'
 import { useRouter } from 'next/router'
 import { BreadcrumbsView } from './BreadcrumbsView'
-import { FeedbackDropdown } from './FeedbackDropdown'
 import { HelpPopover } from './HelpPopover'
 import { HomeIcon } from './HomeIcon'
-import { LocalVersionPopover } from './LocalVersionPopover'
-import MergeRequestButton from './MergeRequestButton'
-import { NotificationsPopoverV2 } from './NotificationsPopoverV2/NotificationsPopover'
 
 const LayoutHeaderDivider = ({ className, ...props }: React.HTMLProps<HTMLSpanElement>) => (
   <span className={cn('text-border-stronger pr-2', className)} {...props}>
@@ -67,9 +56,7 @@ const LayoutHeader = ({
   const { ref: projectRef, slug } = useParams()
   const router = useRouter()
   const { data: selectedProject } = useSelectedProjectQuery()
-  const { data: selectedOrganization } = useSelectedOrganizationQuery()
   const { setMobileMenuOpen } = useAppStateSnapshot()
-  const gitlessBranching = useIsBranching2Enabled()
 
   const isAccountPage = router.pathname.startsWith('/account')
 
@@ -81,23 +68,6 @@ const LayoutHeader = ({
     'e',
     [showEditorPanel, projectRef]
   )
-
-  // We only want to query the org usage and check for possible over-ages for plans without usage billing enabled (free or pro with spend cap)
-  const { data: orgUsage } = useOrgUsageQuery(
-    { orgSlug: selectedOrganization?.slug },
-    { enabled: selectedOrganization?.usage_billing_enabled === false }
-  )
-
-  const exceedingLimits = useMemo(() => {
-    if (orgUsage) {
-      return getResourcesExceededLimitsOrg(orgUsage?.usages || []).length > 0
-    } else {
-      return false
-    }
-  }, [orgUsage])
-
-  // show org selection if we are on a project page or on a explicit org route
-  const showOrgSelection = slug || (selectedOrganization && projectRef)
 
   return (
     <>
@@ -134,12 +104,6 @@ const LayoutHeader = ({
           <div className="flex items-center text-sm">
             <HomeIcon />
             <div className="flex items-center md:pl-2">
-              {showOrgSelection && IS_PLATFORM ? (
-                <>
-                  <LayoutHeaderDivider className="hidden md:block" />
-                  <OrganizationDropdown />
-                </>
-              ) : null}
               <AnimatePresence>
                 {projectRef && (
                   <motion.div
@@ -153,22 +117,9 @@ const LayoutHeader = ({
                     }}
                   >
                     <LayoutHeaderDivider />
-                    <ProjectDropdown />
-
-                    {exceedingLimits && (
-                      <div className="ml-2">
-                        <Link href={`/org/${selectedOrganization?.slug}/usage`}>
-                          <Badge variant="destructive" className="whitespace-nowrap">
-                            Exceeding usage limits
-                          </Badge>
-                        </Link>
-                      </div>
-                    )}
-
                     {selectedProject && (
                       <>
                         <LayoutHeaderDivider />
-                        {IS_PLATFORM && <BranchDropdown />}
                       </>
                     )}
                   </motion.div>
@@ -205,10 +156,7 @@ const LayoutHeader = ({
                     duration: 0.15,
                     ease: 'easeOut',
                   }}
-                >
-                  {IS_PLATFORM && gitlessBranching && <MergeRequestButton />}
-                  <Connect />
-                </motion.div>
+                ></motion.div>
               )}
             </AnimatePresence>
             <BreadcrumbsView defaultValue={breadcrumbs} />
@@ -226,7 +174,6 @@ const LayoutHeader = ({
                     {!!projectRef && (
                       <>
                         <InlineEditorButton onClick={() => setShowEditorPanel(true)} />
-                        <AssistantButton />
                       </>
                     )}
                   </AnimatePresence>
@@ -235,13 +182,11 @@ const LayoutHeader = ({
               </>
             ) : (
               <>
-                <LocalVersionPopover />
                 <div className="overflow-hidden flex items-center rounded-full border">
                   <AnimatePresence initial={false}>
                     {!!projectRef && (
                       <>
                         <InlineEditorButton onClick={() => setShowEditorPanel(true)} />
-                        <AssistantButton />
                       </>
                     )}
                   </AnimatePresence>

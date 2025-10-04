@@ -4,20 +4,11 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { useParams } from 'common'
-import {
-  createSqlSnippetSkeletonV2,
-  suffixWithLimit,
-} from 'components/interfaces/SQLEditor/SQLEditor.utils'
-import Results from 'components/interfaces/SQLEditor/UtilityPanel/Results'
-import { SqlRunButton } from 'components/interfaces/SQLEditor/UtilityPanel/RunButton'
-import { useSqlTitleGenerateMutation } from 'data/ai/sql-title-mutation'
 import { QueryResponseError, useExecuteSqlMutation } from 'data/sql/execute-sql-mutation'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { BASE_PATH } from 'lib/constants'
 import { uuidv4 } from 'lib/helpers'
 import { useProfile } from 'lib/profile'
-import { useSqlEditorV2StateSnapshot } from 'state/sql-editor-v2'
 import {
   Button,
   cn,
@@ -46,8 +37,6 @@ import {
   SQL_ICON,
 } from 'ui'
 import { Admonition } from 'ui-patterns'
-import { containsUnknownFunction, isReadOnlySelect } from '../AIAssistantPanel/AIAssistant.utils'
-import AIEditor from '../AIEditor'
 import { ButtonTooltip } from '../ButtonTooltip'
 import { InlineLink } from '../InlineLink'
 import SqlWarningAdmonition from '../SqlWarningAdmonition'
@@ -91,9 +80,6 @@ export const EditorPanel = ({
   const { ref } = useParams()
   const { data: project } = useSelectedProjectQuery()
   const { profile } = useProfile()
-  const snapV2 = useSqlEditorV2StateSnapshot()
-  const { mutateAsync: generateSqlTitle } = useSqlTitleGenerateMutation()
-  const { data: org } = useSelectedOrganizationQuery()
 
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState<QueryResponseError>()
@@ -255,50 +241,6 @@ export const EditorPanel = ({
                 </PopoverContent_Shadcn_>
               </Popover_Shadcn_>
             )}
-            <ButtonTooltip
-              tooltip={{
-                content: {
-                  side: 'bottom',
-                  text: 'Save as snippet',
-                },
-              }}
-              size="tiny"
-              type="default"
-              className="w-7 h-7"
-              loading={isSaving}
-              icon={<Save size={16} />}
-              onClick={async () => {
-                if (!ref) return console.error('Project ref is required')
-                if (!project) return console.error('Project is required')
-                if (!profile) return console.error('Profile is required')
-
-                try {
-                  setIsSaving(true)
-                  const { title: name } = await generateSqlTitle({
-                    sql: currentValue,
-                  })
-                  const snippet = createSqlSnippetSkeletonV2({
-                    id: uuidv4(),
-                    name,
-                    sql: currentValue,
-                    owner_id: profile.id,
-                    project_id: project.id,
-                  })
-                  snapV2.addSnippet({ projectRef: ref, snippet })
-                  snapV2.addNeedsSaving(snippet.id)
-                  toast.success(
-                    <div>
-                      Saved snippet! View it{' '}
-                      <InlineLink href={`/project/${ref}/sql/${snippet.id}`}>here</InlineLink>
-                    </div>
-                  )
-                } catch (error: any) {
-                  toast.error(`Failed to create new query: ${error.message}`)
-                } finally {
-                  setIsSaving(false)
-                }
-              }}
-            />
 
             <ButtonTooltip
               size="tiny"
@@ -322,33 +264,7 @@ export const EditorPanel = ({
         </SheetHeader>
 
         <div className="flex-1 overflow-hidden flex flex-col h-full">
-          <div className="flex-1 min-h-0 relative">
-            <AIEditor
-              autoFocus
-              language="pgsql"
-              value={currentValue}
-              onChange={handleChange}
-              aiEndpoint={`${BASE_PATH}/api/ai/code/complete`}
-              aiMetadata={{
-                projectRef: project?.ref,
-                connectionString: project?.connectionString,
-                orgSlug: org?.slug,
-              }}
-              initialPrompt={initialPrompt}
-              options={{
-                tabSize: 2,
-                fontSize: 13,
-                minimap: { enabled: false },
-                wordWrap: 'on',
-                lineNumbers: 'on',
-                folding: false,
-                padding: { top: 16 },
-                lineNumbersMinChars: 3,
-              }}
-              executeQuery={onExecuteSql}
-              onClose={() => onClose()}
-            />
-          </div>
+          <div className="flex-1 min-h-0 relative"></div>
 
           {error !== undefined && (
             <div className="shrink-0">
@@ -439,11 +355,6 @@ export const EditorPanel = ({
                 </form>
               </Form_Shadcn_>
             )}
-            <SqlRunButton
-              isDisabled={isExecuting}
-              isExecuting={isExecuting}
-              onClick={onExecuteSql}
-            />
           </div>
         </div>
       </SheetContent>

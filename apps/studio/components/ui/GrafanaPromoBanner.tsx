@@ -1,5 +1,5 @@
 import { useParams } from 'common'
-import { useSendEventMutation } from 'data/telemetry/send-event-mutation'
+
 import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { BASE_PATH } from 'lib/constants'
 import { BookOpen } from 'lucide-react'
@@ -52,7 +52,6 @@ const GrafanaPromoBanner = () => (
 const GrafanaBannerActions = ({ className }: { className?: string }) => {
   const { ref } = useParams()
   const { data: org } = useSelectedOrganizationQuery()
-  const { mutate: sendEvent } = useSendEventMutation()
 
   return (
     <div className={cn('flex gap-2', className)}>

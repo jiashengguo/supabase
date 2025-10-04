@@ -5,9 +5,6 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 
 import { useParams } from 'common'
-import { useDatabasePublicationCreateMutation } from 'data/database-publications/database-publications-create-mutation'
-import { useDatabasePublicationsQuery } from 'data/database-publications/database-publications-query'
-import { useDatabasePublicationUpdateMutation } from 'data/database-publications/database-publications-update-mutation'
 import type { Constraint } from 'data/database/constraints-query'
 import type { ForeignKeyConstraint } from 'data/database/foreign-key-constraints-query'
 import { databaseKeys } from 'data/database/keys'
@@ -47,7 +44,6 @@ import {
   updateColumn,
   updateTable,
 } from './SidePanelEditor.utils'
-import { SpreadsheetImport } from './SpreadsheetImport/SpreadsheetImport'
 import { TableEditor } from './TableEditor/TableEditor'
 import type { ImportContent } from './TableEditor/TableEditor.types'
 
@@ -93,14 +89,6 @@ const SidePanelEditor = ({
     onSuccess() {
       toast.success('Successfully updated row')
     },
-  })
-  const { data: publications } = useDatabasePublicationsQuery({
-    projectRef: project?.ref,
-    connectionString: project?.connectionString,
-  })
-  const { mutateAsync: createPublication } = useDatabasePublicationCreateMutation()
-  const { mutateAsync: updatePublication } = useDatabasePublicationUpdateMutation({
-    onError: () => {},
   })
 
   const getImpersonatedRoleState = useGetImpersonatedRoleState()
@@ -660,13 +648,6 @@ const SidePanelEditor = ({
         }
         closePanel={onClosePanel}
         onSelect={onSaveForeignRow}
-      />
-      <SpreadsheetImport
-        visible={snap.sidePanel?.type === 'csv-import'}
-        selectedTable={selectedTable}
-        saveContent={onImportData}
-        closePanel={onClosePanel}
-        updateEditorDirty={setIsEdited}
       />
       <ConfirmationModal
         visible={isClosingPanel}

@@ -5,10 +5,8 @@ import { useRouter } from 'next/router'
 import SVG from 'react-inlinesvg'
 
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
-import { useSendEventMutation } from 'data/telemetry/send-event-mutation'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
+
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { useAiAssistantStateSnapshot } from 'state/ai-assistant-state'
 import {
   AiIconAnimation,
   Button,
@@ -25,8 +23,6 @@ export const HelpPopover = () => {
   const { data: project } = useSelectedProjectQuery()
   const { data: org } = useSelectedOrganizationQuery()
   const snap = useAiAssistantStateSnapshot()
-
-  const { mutate: sendEvent } = useSendEventMutation()
 
   const projectRef = project?.parent_project_ref ?? router.query.ref
   const supportUrl = `/support/new${projectRef ? `?projectRef=${projectRef}` : ''}`

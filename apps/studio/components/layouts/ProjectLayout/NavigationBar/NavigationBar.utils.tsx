@@ -1,9 +1,7 @@
 import { Blocks, FileText, Lightbulb, List, Settings } from 'lucide-react'
 
 import { ICON_SIZE, ICON_STROKE_WIDTH } from 'components/interfaces/Sidebar'
-import { generateAuthMenu } from 'components/layouts/AuthLayout/AuthLayout.utils'
 import { generateDatabaseMenu } from 'components/layouts/DatabaseLayout/DatabaseMenu.utils'
-import { generateSettingsMenu } from 'components/layouts/ProjectSettingsLayout/SettingsMenu.utils'
 import type { Route } from 'components/ui/ui.types'
 import { EditorIndexPageLink } from 'data/prefetchers/project.$ref.editor'
 import type { Project } from 'data/projects/project-detail-query'
@@ -56,7 +54,6 @@ export const generateProductRoutes = (
   const realtimeEnabled = features?.realtime ?? true
 
   const databaseMenu = generateDatabaseMenu(project)
-  const authMenu = generateAuthMenu(ref as string)
 
   return [
     {
@@ -72,47 +69,6 @@ export const generateProductRoutes = (
             : `/project/${ref}/database/backups/scheduled`),
       items: databaseMenu,
     },
-    ...(authEnabled
-      ? [
-          {
-            key: 'auth',
-            label: 'Authentication',
-            icon: <Auth size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/auth/users`),
-            items: authMenu,
-          },
-        ]
-      : []),
-    ...(storageEnabled
-      ? [
-          {
-            key: 'storage',
-            label: 'Storage',
-            icon: <Storage size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/storage/buckets`),
-          },
-        ]
-      : []),
-    ...(edgeFunctionsEnabled
-      ? [
-          {
-            key: 'functions',
-            label: 'Edge Functions',
-            icon: <EdgeFunctions size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/functions`),
-          },
-        ]
-      : []),
-    ...(realtimeEnabled
-      ? [
-          {
-            key: 'realtime',
-            label: 'Realtime',
-            icon: <Realtime size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/realtime/inspector`),
-          },
-        ]
-      : []),
   ]
 }
 
@@ -173,18 +129,5 @@ export const generateOtherRoutes = (
 }
 
 export const generateSettingsRoutes = (ref?: string, project?: Project): Route[] => {
-  const settingsMenu = generateSettingsMenu(ref as string)
-  return [
-    ...(IS_PLATFORM
-      ? [
-          {
-            key: 'settings',
-            label: 'Project Settings',
-            icon: <Settings size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: ref && `/project/${ref}/settings/general`,
-            items: settingsMenu,
-          },
-        ]
-      : []),
-  ]
+  return [...(IS_PLATFORM ? [] : [])]
 }

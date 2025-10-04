@@ -2,8 +2,6 @@ import { useRouter } from 'next/router'
 import { ComponentType, useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
-import { SessionTimeoutModal } from 'components/interfaces/SignIn/SessionTimeoutModal'
-import { usePermissionsQuery } from 'data/permissions/permissions-query'
 import { useAuthenticatorAssuranceLevelQuery } from 'data/profile/mfa-authenticator-assurance-level-query'
 import { useAuth, useSignOut } from 'lib/auth'
 import { BASE_PATH, IS_PLATFORM } from 'lib/constants'

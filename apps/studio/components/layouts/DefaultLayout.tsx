@@ -2,8 +2,6 @@ import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
 
 import { LOCAL_STORAGE_KEYS, useParams } from 'common'
-import { AppBannerWrapper } from 'components/interfaces/App'
-import { AppBannerContextProvider } from 'components/interfaces/App/AppBannerWrapperContext'
 import { Sidebar } from 'components/interfaces/Sidebar'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { useCheckLatestDeploy } from 'hooks/use-check-latest-deploy'
@@ -50,29 +48,27 @@ const DefaultLayout = ({ children, headerTitle }: PropsWithChildren<DefaultLayou
   return (
     <SidebarProvider defaultOpen={false}>
       <ProjectContextProvider projectRef={ref}>
-        <AppBannerContextProvider>
-          <div className="flex flex-col h-screen w-screen">
-            {/* Top Banner */}
-            <AppBannerWrapper />
-            <div className="flex-shrink-0">
-              <MobileNavigationBar />
-              <LayoutHeader
-                showProductMenu={showProductMenu}
-                headerTitle={headerTitle}
-                backToDashboardURL={
-                  router.pathname.startsWith('/account') ? backToDashboardURL : undefined
-                }
-              />
-            </div>
-            {/* Main Content Area */}
-            <div className="flex flex-1 w-full overflow-y-hidden">
-              {/* Sidebar - Only show for project pages, not account pages */}
-              {!router.pathname.startsWith('/account') && <Sidebar />}
-              {/* Main Content */}
-              <div className="flex-grow h-full overflow-y-auto">{children}</div>
-            </div>
+        <div className="flex flex-col h-screen w-screen">
+          {/* Top Banner */}
+
+          <div className="flex-shrink-0">
+            <MobileNavigationBar />
+            <LayoutHeader
+              showProductMenu={showProductMenu}
+              headerTitle={headerTitle}
+              backToDashboardURL={
+                router.pathname.startsWith('/account') ? backToDashboardURL : undefined
+              }
+            />
           </div>
-        </AppBannerContextProvider>
+          {/* Main Content Area */}
+          <div className="flex flex-1 w-full overflow-y-hidden">
+            {/* Sidebar - Only show for project pages, not account pages */}
+            {!router.pathname.startsWith('/account') && <Sidebar />}
+            {/* Main Content */}
+            <div className="flex-grow h-full overflow-y-auto">{children}</div>
+          </div>
+        </div>
       </ProjectContextProvider>
     </SidebarProvider>
   )

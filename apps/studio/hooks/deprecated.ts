@@ -1,4 +1,3 @@
-import TooltipListener from 'components/to-be-cleaned/TooltipListener'
 import { useEffect, useRef } from 'react'
 
 function usePrevious(value: any) {
@@ -9,4 +8,4 @@ function usePrevious(value: any) {
   return ref.current
 }
 
-export { TooltipListener, usePrevious }
+export { usePrevious }

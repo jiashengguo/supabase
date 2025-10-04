@@ -41,11 +41,7 @@ import {
   useThemeSandbox,
 } from 'common'
 import MetaFaviconsPagesRouter from 'common/MetaFavicons/pages-router'
-import { RouteValidationWrapper } from 'components/interfaces/App'
-import { AppBannerContextProvider } from 'components/interfaces/App/AppBannerWrapperContext'
 import { StudioCommandMenu } from 'components/interfaces/App/CommandMenu'
-import { FeaturePreviewContextProvider } from 'components/interfaces/App/FeaturePreview/FeaturePreviewContext'
-import FeaturePreviewModal from 'components/interfaces/App/FeaturePreview/FeaturePreviewModal'
 import { MonacoThemeProvider } from 'components/interfaces/App/MonacoThemeProvider'
 import { GlobalErrorBoundaryState } from 'components/ui/GlobalErrorBoundaryState'
 import { useRootQueryClient } from 'data/query-client'
@@ -53,7 +49,6 @@ import { customFont, sourceCodePro } from 'fonts'
 import { AuthProvider } from 'lib/auth'
 import { API_URL, BASE_PATH, IS_PLATFORM, useDefaultProvider } from 'lib/constants'
 import { ProfileProvider } from 'lib/profile'
-import { Telemetry } from 'lib/telemetry'
 import { AppPropsWithLayout } from 'types'
 import { SonnerToaster, TooltipProvider } from 'ui'
 import { CommandProvider } from 'ui-patterns/CommandMenu'
@@ -139,28 +134,20 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
                   </Head>
                   <MetaFaviconsPagesRouter applicationName="Supabase Studio" />
                   <TooltipProvider delayDuration={0}>
-                    <RouteValidationWrapper>
-                      <ThemeProvider
-                        defaultTheme="system"
-                        themes={['dark', 'light', 'classic-dark']}
-                        enableSystem
-                        disableTransitionOnChange
-                      >
-                        <AppBannerContextProvider>
-                          <CommandProvider>
-                            <FeaturePreviewContextProvider>
-                              {getLayout(<Component {...pageProps} />)}
-                              <StudioCommandMenu />
-                              <FeaturePreviewModal />
-                            </FeaturePreviewContextProvider>
-                            <SonnerToaster position="top-right" />
-                            <MonacoThemeProvider />
-                          </CommandProvider>
-                        </AppBannerContextProvider>
-                      </ThemeProvider>
-                    </RouteValidationWrapper>
+                    <ThemeProvider
+                      defaultTheme="system"
+                      themes={['dark', 'light', 'classic-dark']}
+                      enableSystem
+                      disableTransitionOnChange
+                    >
+                      <CommandProvider>
+                        {getLayout(<Component {...pageProps} />)}
+                        <StudioCommandMenu />
+                        <SonnerToaster position="top-right" />
+                        <MonacoThemeProvider />
+                      </CommandProvider>
+                    </ThemeProvider>
                   </TooltipProvider>
-                  <Telemetry />
                   {!isTestEnv && (
                     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
                   )}

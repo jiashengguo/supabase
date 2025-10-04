@@ -6,8 +6,6 @@ import {
   convertKVStringArrayToJson,
   wrapperMetaComparator,
 } from 'components/interfaces/Integrations/Wrappers/Wrappers.utils'
-import { QUEUES_SCHEMA } from 'data/database-queues/database-queues-toggle-postgrest-mutation'
-import { useFDWsQuery } from 'data/fdw/fdws-query'
 import { useSelectedProjectQuery } from './misc/useSelectedProject'
 
 /**
@@ -30,38 +28,7 @@ export const INTERNAL_SCHEMAS = [
   'vault',
   'graphql',
   'graphql_public',
-  QUEUES_SCHEMA,
 ]
-
-/**
- * Get the list of schemas used by IcebergFDWs
- */
-const useIcebergFdwSchemasQuery = () => {
-  const { data: project } = useSelectedProjectQuery()
-  const result = useFDWsQuery({
-    projectRef: project?.ref,
-    connectionString: project?.connectionString,
-  })
-
-  const schemas = useMemo(() => {
-    const icebergFDWs = result.data?.filter((wrapper) =>
-      wrapperMetaComparator(
-        { handlerName: WRAPPER_HANDLERS.ICEBERG, server: { options: [] } },
-        wrapper
-      )
-    )
-
-    const fdwSchemas = icebergFDWs
-      ?.map((fdw) => convertKVStringArrayToJson(fdw.server_options))
-      .map((options) => options['supabase_target_schema'])
-      .flatMap((s) => s?.split(','))
-      .filter(Boolean)
-
-    return uniq(fdwSchemas)
-  }, [result.data])
-
-  return { ...result, data: schemas }
-}
 
 /**
  * Returns a list of schemas that are protected by Supabase (internal schemas or schemas used by Iceberg FDWs).
@@ -73,17 +40,14 @@ export const useProtectedSchemas = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const stableExcludeSchemas = useMemo(() => excludeSchemas, [JSON.stringify(excludeSchemas)])
 
-  const result = useIcebergFdwSchemasQuery()
-
   const schemas = useMemo<{ name: string; type: 'fdw' | 'internal' }[]>(() => {
     const internalSchemas = INTERNAL_SCHEMAS.map((s) => ({ name: s, type: 'internal' as const }))
-    const icebergFdwSchemas = result.data?.map((s) => ({ name: s, type: 'fdw' as const }))
 
-    const schemas = uniq([...internalSchemas, ...icebergFdwSchemas])
+    const schemas = uniq([...internalSchemas])
     return schemas.filter((schema) => !stableExcludeSchemas.includes(schema.name))
-  }, [result.data, stableExcludeSchemas])
+  }, [stableExcludeSchemas])
 
-  return { ...result, data: schemas }
+  return { data: schemas }
 }
 
 /**

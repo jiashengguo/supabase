@@ -7,9 +7,6 @@ import { useEffect, useState } from 'react'
 
 import { useParams } from 'common'
 import { Markdown } from 'components/interfaces/Markdown'
-import { REPLICA_STATUS } from 'components/interfaces/Settings/Infrastructure/InfrastructureConfiguration/InstanceConfiguration.constants'
-import { useReadReplicasQuery } from 'data/read-replicas/replicas-query'
-import { formatDatabaseID, formatDatabaseRegion } from 'data/read-replicas/replicas.utils'
 import { IS_PLATFORM } from 'lib/constants'
 import { useDatabaseSelectorStateSnapshot } from 'state/database-selector'
 import {
@@ -149,8 +146,8 @@ const DatabaseSelector = ({
 
                   if (database.status !== 'ACTIVE_HEALTHY') {
                     const status = [
-                      REPLICA_STATUS.INIT_READ_REPLICA,
-                      REPLICA_STATUS.COMING_UP,
+                      // REPLICA_STATUS.INIT_READ_REPLICA,
+                      // REPLICA_STATUS.COMING_UP,
                     ].includes(database.status)
                       ? 'coming up'
                       : 'not healthy'

@@ -20,7 +20,6 @@ import { InlineLink } from 'components/ui/InlineLink'
 import { getTableDefinition } from 'data/database/table-definition-query'
 import { ENTITY_TYPE } from 'data/entity-types/entity-type-constants'
 import { Entity } from 'data/entity-types/entity-types-infinite-query'
-import { useProjectLintsQuery } from 'data/lint/lint-query'
 import { EditorTablePageLink } from 'data/prefetchers/project.$ref.editor.$id'
 import { getTableEditor } from 'data/table-editor/table-editor-query'
 import { isTableLike } from 'data/table-editor/table-editor-types'
@@ -81,42 +80,6 @@ const EntityListItem: ItemRenderer<Entity, EntityListItemProps> = ({
   const isOpened = Object.values(tabs.tabsMap).some((tab) => tab.metadata?.tableId === entity.id)
   const isActive = Number(id) === entity.id
   const canEdit = isActive && !isLocked
-
-  const { data: lints = [] } = useProjectLintsQuery({
-    projectRef: project?.ref,
-  })
-
-  const tableHasLints: boolean = getEntityLintDetails(
-    entity.name,
-    'rls_disabled_in_public',
-    ['ERROR'],
-    lints,
-    selectedSchema
-  ).hasLint
-
-  const viewHasLints: boolean = getEntityLintDetails(
-    entity.name,
-    'security_definer_view',
-    ['ERROR', 'WARN'],
-    lints,
-    selectedSchema
-  ).hasLint
-
-  const materializedViewHasLints: boolean = getEntityLintDetails(
-    entity.name,
-    'materialized_view_in_api',
-    ['ERROR', 'WARN'],
-    lints,
-    selectedSchema
-  ).hasLint
-
-  const foreignTableHasLints: boolean = getEntityLintDetails(
-    entity.name,
-    'foreign_table_in_api',
-    ['ERROR', 'WARN'],
-    lints,
-    selectedSchema
-  ).hasLint
 
   const formatTooltipText = (entityType: string) => {
     return Object.entries(ENTITY_TYPE)
@@ -277,13 +240,7 @@ const EntityListItem: ItemRenderer<Entity, EntityListItemProps> = ({
             {entity.name}
           </span>
           <div>
-            <EntityTooltipTrigger
-              entity={entity}
-              tableHasLints={tableHasLints}
-              viewHasLints={viewHasLints}
-              materializedViewHasLints={materializedViewHasLints}
-              foreignTableHasLints={foreignTableHasLints}
-            />
+            <EntityTooltipTrigger entity={entity} />
           </div>
         </div>
 

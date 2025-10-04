@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import { DocsButton } from 'components/ui/DocsButton'
-import { useDatabasePublicationsQuery } from 'data/database-publications/database-publications-query'
 import {
   CONSTRAINT_TYPE,
   Constraint,
@@ -15,10 +14,9 @@ import {
   useForeignKeyConstraintsQuery,
 } from 'data/database/foreign-key-constraints-query'
 import { useEnumeratedTypesQuery } from 'data/enumerated-types/enumerated-types-query'
-import { useSendEventMutation } from 'data/telemetry/send-event-mutation'
+
 import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
 import { useQuerySchemaState } from 'hooks/misc/useSchemaQueryState'
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useUrlState } from 'hooks/ui/useUrlState'
 import { useProtectedSchemas } from 'hooks/useProtectedSchemas'
@@ -30,7 +28,6 @@ import ActionBar from '../ActionBar'
 import type { ForeignKey } from '../ForeignKeySelector/ForeignKeySelector.types'
 import { formatForeignKeys } from '../ForeignKeySelector/ForeignKeySelector.utils'
 import type { ColumnField } from '../SidePanelEditor.types'
-import { SpreadsheetImport } from '../SpreadsheetImport/SpreadsheetImport'
 import ColumnManagement from './ColumnManagement'
 import { ForeignKeysManagement } from './ForeignKeysManagement/ForeignKeysManagement'
 import HeaderTitle from './HeaderTitle'
@@ -82,11 +79,9 @@ export const TableEditor = ({
 }: TableEditorProps) => {
   const snap = useTableEditorStateSnapshot()
   const { data: project } = useSelectedProjectQuery()
-  const { data: org } = useSelectedOrganizationQuery()
   const { selectedSchema } = useQuerySchemaState()
   const isNewRecord = isUndefined(table)
   const { realtimeAll: realtimeEnabled } = useIsFeatureEnabled(['realtime:all'])
-  const { mutate: sendEvent } = useSendEventMutation()
 
   const [params, setParams] = useUrlState()
   useEffect(() => {
@@ -105,14 +100,7 @@ export const TableEditor = ({
     (type) => !protectedSchemas.find((s) => s.name === type.schema)
   )
 
-  const { data: publications } = useDatabasePublicationsQuery({
-    projectRef: project?.ref,
-    connectionString: project?.connectionString,
-  })
-  const realtimePublication = (publications ?? []).find(
-    (publication) => publication.name === 'supabase_realtime'
-  )
-  const realtimeEnabledTables = realtimePublication?.tables ?? []
+  const realtimeEnabledTables = []
   const isRealtimeEnabled = isNewRecord
     ? false
     : realtimeEnabledTables.some((t: any) => t.id === table?.id)

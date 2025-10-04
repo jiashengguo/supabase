@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 import { useParams } from 'common'
 import { SQL_TEMPLATES } from 'components/interfaces/SQLEditor/SQLEditor.queries'
 import { createSqlSnippetSkeletonV2 } from 'components/interfaces/SQLEditor/SQLEditor.utils'
-import { useSendEventMutation } from 'data/telemetry/send-event-mutation'
+
 import { useAsyncCheckPermissions } from 'hooks/misc/useCheckPermissions'
 import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
@@ -45,7 +45,6 @@ export function NewTab() {
   const [templates] = partition(SQL_TEMPLATES, { type: 'template' })
   const [quickstarts] = partition(SQL_TEMPLATES, { type: 'quickstart' })
 
-  const { mutate: sendEvent } = useSendEventMutation()
   const { can: canCreateSQLSnippet } = useAsyncCheckPermissions(
     PermissionAction.CREATE,
     'user_content',

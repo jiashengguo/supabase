@@ -1,11 +1,8 @@
 import { useIsLoggedIn, useParams } from 'common'
 import jsonLogic from 'json-logic-js'
 
-import { usePermissionsQuery } from 'data/permissions/permissions-query'
 import { IS_PLATFORM } from 'lib/constants'
 import type { Permission } from 'types'
-import { useSelectedOrganizationQuery } from './useSelectedOrganization'
-import { useSelectedProjectQuery } from './useSelectedProject'
 import { useMemo } from 'react'
 
 const toRegexpString = (actionOrResource: string) =>
@@ -79,58 +76,19 @@ function useGetProjectPermissions(
   projectRefOverride?: string,
   enabled = true
 ) {
-  const {
-    data,
-    isLoading: isLoadingPermissions,
-    isSuccess: isSuccessPermissions,
-  } = usePermissionsQuery({
-    enabled: permissionsOverride === undefined && enabled,
-  })
-  const permissions = permissionsOverride === undefined ? data : permissionsOverride
+  const permissions = permissionsOverride
 
   const getOrganizationDataFromParamsSlug = organizationSlugOverride === undefined && enabled
-  const {
-    data: organizationData,
-    isLoading: isLoadingOrganization,
-    isSuccess: isSuccessOrganization,
-  } = useSelectedOrganizationQuery({
-    enabled: getOrganizationDataFromParamsSlug,
-  })
-  const organization =
-    organizationSlugOverride === undefined ? organizationData : { slug: organizationSlugOverride }
-  const organizationSlug = organization?.slug
 
   const { ref: urlProjectRef } = useParams()
   const getProjectDataFromParamsRef = !!urlProjectRef && projectRefOverride === undefined && enabled
-  const {
-    data: projectData,
-    isLoading: isLoadingProject,
-    isSuccess: isSuccessProject,
-  } = useSelectedProjectQuery({
-    enabled: getProjectDataFromParamsRef,
-  })
-  const project =
-    projectRefOverride === undefined || projectData?.parent_project_ref
-      ? projectData
-      : { ref: projectRefOverride, parent_project_ref: undefined }
-
-  const projectRef = project?.parent_project_ref ? project.parent_project_ref : project?.ref
-
-  const isLoading =
-    isLoadingPermissions ||
-    (getOrganizationDataFromParamsSlug && isLoadingOrganization) ||
-    (getProjectDataFromParamsRef && isLoadingProject)
-  const isSuccess =
-    isSuccessPermissions &&
-    (!getOrganizationDataFromParamsSlug || isSuccessOrganization) &&
-    (!getProjectDataFromParamsRef || isSuccessProject)
 
   return {
     permissions,
-    organizationSlug,
-    projectRef,
-    isLoading,
-    isSuccess,
+    organizationSlug: '',
+    projectRef: null,
+    isLoading: false,
+    isSuccess: true,
   }
 }
 
