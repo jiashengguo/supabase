@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/nextjs'
 import createClient from 'openapi-fetch'
 
 import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@supabase/pg-meta/src/constants'
-import { IS_PLATFORM } from 'common'
+import { IS_PLATFORM } from '@common'
 import { API_URL } from 'lib/constants'
 import { getAccessToken } from 'lib/gotrue'
 import { uuidv4 } from 'lib/helpers'

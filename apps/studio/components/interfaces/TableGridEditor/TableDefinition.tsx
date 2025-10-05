@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { useMemo, useRef } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { Footer } from 'components/grid/components/footer/Footer'
 import { GenericSkeletonLoader } from 'components/ui/ShimmeringLoader'
 import { useTableDefinitionQuery } from 'data/database/table-definition-query'

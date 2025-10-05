@@ -17,6 +17,7 @@
     "downlevelIteration": true,
     "incremental": true,
     "paths": {
+      "@common": ["./packages/common"],
       "@ui/*": ["./../../packages/ui/src/*"] // handle ui package paths
     },
     "useDefineForClassFields": true,

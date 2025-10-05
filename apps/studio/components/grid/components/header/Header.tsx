@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 import { toast } from 'sonner'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useTableFilter } from 'components/grid/hooks/useTableFilter'
 import { useTableSort } from 'components/grid/hooks/useTableSort'
 import { GridHeaderActions } from 'components/interfaces/TableGridEditor/GridHeaderActions'

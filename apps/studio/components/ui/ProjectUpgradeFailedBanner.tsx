@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useProjectUpgradingStatusQuery } from 'data/config/project-upgrade-status-query'
 import { IS_PLATFORM } from 'lib/constants'
 import { Alert, Button } from 'ui'

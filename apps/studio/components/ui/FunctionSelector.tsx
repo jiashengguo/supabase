@@ -2,7 +2,7 @@ import { uniqBy } from 'lodash'
 import { Check, ChevronsUpDown, Plus } from 'lucide-react'
 import { useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import {
   DatabaseFunctionsData,
   useDatabaseFunctionsQuery,

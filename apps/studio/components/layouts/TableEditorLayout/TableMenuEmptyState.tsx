@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { Pointer } from 'lucide-react'
 import { useRef } from 'react'
 import { InnerSideBarEmptyPanel } from 'ui-patterns/InnerSideMenu'

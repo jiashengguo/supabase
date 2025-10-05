@@ -15,7 +15,6 @@ import {
 } from 'data/database/foreign-key-constraints-query'
 import { useEnumeratedTypesQuery } from 'data/enumerated-types/enumerated-types-query'
 
-import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
 import { useQuerySchemaState } from 'hooks/misc/useSchemaQueryState'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useUrlState } from 'hooks/ui/useUrlState'
@@ -81,7 +80,6 @@ export const TableEditor = ({
   const { data: project } = useSelectedProjectQuery()
   const { selectedSchema } = useQuerySchemaState()
   const isNewRecord = isUndefined(table)
-  const { realtimeAll: realtimeEnabled } = useIsFeatureEnabled(['realtime:all'])
 
   const [params, setParams] = useUrlState()
   useEffect(() => {
@@ -99,11 +97,6 @@ export const TableEditor = ({
   const enumTypes = (types ?? []).filter(
     (type) => !protectedSchemas.find((s) => s.name === type.schema)
   )
-
-  const realtimeEnabledTables = []
-  const isRealtimeEnabled = isNewRecord
-    ? false
-    : realtimeEnabledTables.some((t: any) => t.id === table?.id)
 
   const [errors, setErrors] = useState<any>({})
   const [tableFields, setTableFields] = useState<TableField>()

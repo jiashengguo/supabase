@@ -3,7 +3,7 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs'
-import { hasConsented } from 'common'
+import { hasConsented } from '@common'
 import { IS_PLATFORM } from 'common/constants/environment'
 import { match } from 'path-to-regexp'
 

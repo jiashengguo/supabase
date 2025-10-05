@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
 
-import { LOCAL_STORAGE_KEYS, useParams } from 'common'
+import { LOCAL_STORAGE_KEYS, useParams } from '@common'
 import { Sidebar } from 'components/interfaces/Sidebar'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
-import { useCheckLatestDeploy } from 'hooks/use-check-latest-deploy'
 import { useAppStateSnapshot } from 'state/app-state'
 import { SidebarProvider } from 'ui'
 import { LayoutHeader } from './ProjectLayout/LayoutHeader'
@@ -42,8 +41,6 @@ const DefaultLayout = ({ children, headerTitle }: PropsWithChildren<DefaultLayou
       : !!lastVisitedOrganization
         ? `/org/${lastVisitedOrganization}`
         : '/organizations'
-
-  useCheckLatestDeploy()
 
   return (
     <SidebarProvider defaultOpen={false}>

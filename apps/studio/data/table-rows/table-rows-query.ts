@@ -7,7 +7,7 @@ import {
   type UseQueryOptions,
 } from '@tanstack/react-query'
 
-import { IS_PLATFORM } from 'common'
+import { IS_PLATFORM } from '@common'
 import { parseSupaTable } from 'components/grid/SupabaseGrid.utils'
 import { Filter, Sort, SupaRow, SupaTable } from 'components/grid/types'
 import { prefetchTableEditor } from 'data/table-editor/table-editor-query'

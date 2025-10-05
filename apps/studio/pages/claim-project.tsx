@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { ProjectClaimBenefits } from 'components/interfaces/Organization/ProjectClaim/benefits'
 import { ProjectClaimChooseOrg } from 'components/interfaces/Organization/ProjectClaim/choose-org'
 import { ProjectClaimConfirm } from 'components/interfaces/Organization/ProjectClaim/confirm'

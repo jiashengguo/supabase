@@ -1,6 +1,6 @@
 import { Table2 } from 'lucide-react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { COMMAND_MENU_SECTIONS } from 'components/interfaces/App/CommandMenu/CommandMenu.utils'
 import { orderCommandSectionsByPriority } from 'components/interfaces/App/CommandMenu/ordering'
 import type { CommandOptions } from 'ui-patterns/CommandMenu'

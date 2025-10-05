@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { SupabaseGrid } from 'components/grid/SupabaseGrid'
 import { useSyncTableEditorStateFromLocalStorageWithUrl } from 'components/grid/SupabaseGrid.utils'
 import {

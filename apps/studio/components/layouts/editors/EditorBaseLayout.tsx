@@ -1,7 +1,7 @@
 import { usePathname } from 'next/navigation'
 import { ComponentProps, ReactNode } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useTabsStateSnapshot } from 'state/tabs'
 import { cn } from 'ui'
 import { ProjectLayoutWithAuth } from '../ProjectLayout/ProjectLayout'

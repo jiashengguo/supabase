@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { GridFooter } from 'components/ui/GridFooter'
 import TwoOptionToggle from 'components/ui/TwoOptionToggle'
 import { useTableEditorQuery } from 'data/table-editor/table-editor-query'

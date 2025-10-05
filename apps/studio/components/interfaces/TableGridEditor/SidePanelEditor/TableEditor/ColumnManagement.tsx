@@ -9,7 +9,7 @@ import {
   DroppableProvided,
 } from 'react-beautiful-dnd'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import InformationBox from 'components/ui/InformationBox'
 import type { EnumeratedType } from 'data/enumerated-types/enumerated-types-query'
 

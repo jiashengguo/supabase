@@ -1,4 +1,4 @@
-import { useIsLoggedIn, useParams } from 'common'
+import { useIsLoggedIn, useParams } from '@common'
 import { useProjectDetailQuery } from 'data/projects/project-detail-query'
 import { useProjectsQuery } from 'data/projects/projects-query'
 import { PROVIDERS } from 'lib/constants'

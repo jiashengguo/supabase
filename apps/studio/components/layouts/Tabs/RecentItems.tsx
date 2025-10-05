@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { EntityTypeIcon } from 'components/ui/EntityTypeIcon'
 import { ENTITY_TYPE } from 'data/entity-types/entity-type-constants'
 import { editorEntityTypes, useTabsStateSnapshot } from 'state/tabs'

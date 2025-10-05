@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 
 import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { BASE_PATH } from 'lib/constants'

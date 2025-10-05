@@ -2,7 +2,7 @@ import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Fragment, ReactNode } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { cn } from 'ui'
 import {
   Breadcrumb,

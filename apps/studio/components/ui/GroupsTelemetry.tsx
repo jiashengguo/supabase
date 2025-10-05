@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/nextjs'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-import { LOCAL_STORAGE_KEYS, useParams, useTelemetryCookie, useUser } from 'common'
+import { LOCAL_STORAGE_KEYS, useParams, useTelemetryCookie, useUser } from '@common'
 import { useSendGroupsIdentifyMutation } from 'data/telemetry/send-groups-identify-mutation'
 import { useSendGroupsResetMutation } from 'data/telemetry/send-groups-reset-mutation'
 import { usePrevious } from 'hooks/deprecated'

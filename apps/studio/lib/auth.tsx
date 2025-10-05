@@ -4,7 +4,7 @@ import {
   clearLocalStorage,
   gotrueClient,
   useAuthError,
-} from 'common'
+} from '@common'
 import { PropsWithChildren, useCallback, useEffect } from 'react'
 import { toast } from 'sonner'
 
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   )
 }
 
-export { useAuth, useIsLoggedIn, useSession, useUser } from 'common'
+export { useAuth, useIsLoggedIn, useSession, useUser } from '@common'
 
 export function useSignOut() {
   const queryClient = useQueryClient()

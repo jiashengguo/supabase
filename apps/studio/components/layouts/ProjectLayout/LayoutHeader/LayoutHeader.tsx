@@ -3,7 +3,7 @@ import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode, useMemo, useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { LocalDropdown } from 'components/interfaces/LocalDropdown'
 import { UserDropdown } from 'components/interfaces/UserDropdown'
 import { InlineEditorButton } from 'components/layouts/AppLayout/InlineEditorButton'

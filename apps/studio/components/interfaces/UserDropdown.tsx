@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 
 import { ProfileImage } from 'components/ui/ProfileImage'
 import { useProfileIdentitiesQuery } from 'data/profile/profile-identities-query'
-import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
 import { useSignOut } from 'lib/auth'
 import { IS_PLATFORM } from 'lib/constants'
 import { getGitHubProfileImgUrl } from 'lib/github'

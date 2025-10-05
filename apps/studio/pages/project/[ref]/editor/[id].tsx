@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { TableGridEditor } from 'components/interfaces/TableGridEditor/TableGridEditor'
 import DefaultLayout from 'components/layouts/DefaultLayout'
 import { EditorBaseLayout } from 'components/layouts/editors/EditorBaseLayout'

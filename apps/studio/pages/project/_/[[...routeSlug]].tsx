@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import { IS_PLATFORM, LOCAL_STORAGE_KEYS } from 'common'
+import { IS_PLATFORM, LOCAL_STORAGE_KEYS } from '@common'
 import {
   Header,
   LoadingCardView,

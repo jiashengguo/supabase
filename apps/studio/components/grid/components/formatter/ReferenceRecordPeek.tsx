@@ -2,7 +2,7 @@ import { PostgresTable } from '@supabase/postgres-meta'
 import { Key } from 'lucide-react'
 import DataGrid, { Column } from 'react-data-grid'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { COLUMN_MIN_WIDTH } from 'components/grid/constants'
 import {
   ESTIMATED_CHARACTER_PIXEL_WIDTH,

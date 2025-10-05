@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Plus, X } from 'lucide-react'
 import { useRouter } from 'next/router'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useDashboardHistory } from 'hooks/misc/useDashboardHistory'
 import { editorEntityTypes, useTabsStateSnapshot, type Tab } from 'state/tabs'
 import {

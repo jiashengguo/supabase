@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { PropsWithChildren, createContext, useContext, useMemo } from 'react'
 import { toast } from 'sonner'
 
-import { useIsLoggedIn, useUser } from 'common'
+import { useIsLoggedIn, useUser } from '@common'
 import { useProfileQuery } from 'data/profile/profile-query'
 import type { Profile } from 'data/profile/types'
 import type { ResponseError } from 'types'

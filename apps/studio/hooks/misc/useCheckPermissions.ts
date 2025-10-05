@@ -1,4 +1,4 @@
-import { useIsLoggedIn, useParams } from 'common'
+import { useIsLoggedIn, useParams } from '@common'
 import jsonLogic from 'json-logic-js'
 
 import { IS_PLATFORM } from 'lib/constants'

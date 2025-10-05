@@ -1,4 +1,4 @@
-import { useIsLoggedIn } from 'common'
+import { useIsLoggedIn } from '@common'
 import { useDatabaseGotoCommands } from './DatabaseLayout/Database.Commands'
 import { useTableEditorGotoCommands } from './TableEditorLayout/TableEditor.Commands'
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Papa from 'papaparse'
 import { toast } from 'sonner'
 
-import { IS_PLATFORM, useParams } from 'common'
+import { IS_PLATFORM, useParams } from '@common'
 import {
   MAX_EXPORT_ROW_COUNT,
   MAX_EXPORT_ROW_COUNT_MESSAGE,

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { parseAsBoolean, useQueryState } from 'nuqs'
 import { useEffect, useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { Markdown } from 'components/interfaces/Markdown'
 import { IS_PLATFORM } from 'lib/constants'
 import { useDatabaseSelectorStateSnapshot } from 'state/database-selector'

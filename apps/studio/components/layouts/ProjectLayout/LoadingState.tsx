@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 import ShimmeringLoader from 'components/ui/ShimmeringLoader'
 
 export const LoadingState = () => {

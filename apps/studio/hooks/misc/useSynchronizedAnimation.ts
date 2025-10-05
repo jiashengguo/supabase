@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from 'common'
+import { useIsomorphicLayoutEffect } from '@common'
 import { useRef } from 'react'
 
 // Source: https://youtu.be/3kDVachh-BM

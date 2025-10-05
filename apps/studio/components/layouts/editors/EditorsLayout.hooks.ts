@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { usePathname } from 'next/navigation'
 
 export function useEditorType(): 'table' | 'sql' | undefined {

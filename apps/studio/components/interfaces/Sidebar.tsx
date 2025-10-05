@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ComponentProps, ComponentPropsWithoutRef, FC, ReactNode, useEffect } from 'react'
 
-import { LOCAL_STORAGE_KEYS, useIsMFAEnabled, useParams } from 'common'
+import { LOCAL_STORAGE_KEYS, useIsMFAEnabled, useParams } from '@common'
 import {
   generateOtherRoutes,
   generateProductRoutes,
@@ -14,7 +14,6 @@ import {
 } from 'components/layouts/ProjectLayout/NavigationBar/NavigationBar.utils'
 import { ProjectIndexPageLink } from 'data/prefetchers/project.$ref'
 import { useHideSidebar } from 'hooks/misc/useHideSidebar'
-import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { Home } from 'icons'
@@ -216,33 +215,14 @@ const ProjectLinks = () => {
   const { ref } = useParams()
   const { data: project } = useSelectedProjectQuery()
   const snap = useAppStateSnapshot()
-  const showReports = useIsFeatureEnabled('reports:all')
 
   const activeRoute = router.pathname.split('/')[3]
 
-  const {
-    projectAuthAll: authEnabled,
-    projectEdgeFunctionAll: edgeFunctionsEnabled,
-    projectStorageAll: storageEnabled,
-    realtimeAll: realtimeEnabled,
-  } = useIsFeatureEnabled([
-    'project_auth:all',
-    'project_edge_function:all',
-    'project_storage:all',
-    'realtime:all',
-  ])
-
   const toolRoutes = generateToolRoutes(ref, project)
-  const productRoutes = generateProductRoutes(ref, project, {
-    auth: authEnabled,
-    edgeFunctions: edgeFunctionsEnabled,
-    storage: storageEnabled,
-    realtime: realtimeEnabled,
-  })
+  const productRoutes = generateProductRoutes(ref, project, {})
 
   const otherRoutes = generateOtherRoutes(ref, project, {
     unifiedLogs: true,
-    showReports,
   })
   const settingsRoutes = generateSettingsRoutes(ref, project)
 
@@ -345,8 +325,6 @@ const OrganizationLinks = () => {
   const isUserMFAEnabled = useIsMFAEnabled()
   const disableAccessMfa = !isUserMFAEnabled
 
-  const showBilling = useIsFeatureEnabled('billing:all')
-
   const activeRoute = router.pathname.split('/')[3]
 
   const navMenuItems = [
@@ -374,16 +352,6 @@ const OrganizationLinks = () => {
       key: 'usage',
       icon: <ChartArea size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
     },
-    ...(showBilling
-      ? [
-          {
-            label: 'Billing',
-            href: `/org/${slug}/billing`,
-            key: 'billing',
-            icon: <Receipt size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-          },
-        ]
-      : []),
     {
       label: 'Organization settings',
       href: `/org/${slug}/general`,

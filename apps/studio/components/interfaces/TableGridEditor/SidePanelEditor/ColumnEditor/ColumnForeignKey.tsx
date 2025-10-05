@@ -1,4 +1,4 @@
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useState } from 'react'
 import { Button } from 'ui'
 

@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { RefreshCw } from 'lucide-react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
 import { tableRowKeys } from 'data/table-rows/keys'
 

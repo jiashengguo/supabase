@@ -33,13 +33,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/pages'
 import { ErrorInfo, useCallback } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
-import {
-  FeatureFlagProvider,
-  getFlags,
-  TelemetryTagManager,
-  ThemeProvider,
-  useThemeSandbox,
-} from 'common'
+import { ThemeProvider } from '@common'
 import MetaFaviconsPagesRouter from 'common/MetaFavicons/pages-router'
 import { StudioCommandMenu } from 'components/interfaces/App/CommandMenu'
 import { MonacoThemeProvider } from 'components/interfaces/App/MonacoThemeProvider'
@@ -95,19 +89,9 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
     console.error(error.stack)
   }
 
-  useThemeSandbox()
-
   const isTestEnv = process.env.NEXT_PUBLIC_NODE_ENV === 'test'
 
   const cloudProvider = useDefaultProvider()
-
-  const getConfigCatFlags = useCallback(
-    (userEmail?: string) => {
-      const customAttributes = cloudProvider ? { cloud_provider: cloudProvider } : undefined
-      return getFlags(userEmail, customAttributes)
-    },
-    [cloudProvider]
-  )
 
   return (
     <ErrorBoundary FallbackComponent={GlobalErrorBoundaryState} onError={errorBoundaryHandler}>
@@ -115,49 +99,40 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
         <NuqsAdapter>
           <Hydrate state={pageProps.dehydratedState}>
             <AuthProvider>
-              <FeatureFlagProvider
-                API_URL={API_URL}
-                enabled={IS_PLATFORM}
-                getConfigCatFlags={getConfigCatFlags}
-              >
-                <ProfileProvider>
-                  <Head>
-                    <title>Supabase</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <meta property="og:image" content={`${BASE_PATH}/img/supabase-logo.png`} />
-                    {/* [Alaister]: This has to be an inline style tag here and not a separate component due to next/font */}
-                    <style
-                      dangerouslySetInnerHTML={{
-                        __html: `:root{--font-custom:${customFont.style.fontFamily};--font-source-code-pro:${sourceCodePro.style.fontFamily};}`,
-                      }}
-                    />
-                  </Head>
-                  <MetaFaviconsPagesRouter applicationName="Supabase Studio" />
-                  <TooltipProvider delayDuration={0}>
-                    <ThemeProvider
-                      defaultTheme="system"
-                      themes={['dark', 'light', 'classic-dark']}
-                      enableSystem
-                      disableTransitionOnChange
-                    >
-                      <CommandProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                        <StudioCommandMenu />
-                        <SonnerToaster position="top-right" />
-                        <MonacoThemeProvider />
-                      </CommandProvider>
-                    </ThemeProvider>
-                  </TooltipProvider>
-                  {!isTestEnv && (
-                    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-                  )}
-                </ProfileProvider>
-              </FeatureFlagProvider>
+              <ProfileProvider>
+                <Head>
+                  <title>Supabase</title>
+                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                  <meta property="og:image" content={`${BASE_PATH}/img/supabase-logo.png`} />
+                  {/* [Alaister]: This has to be an inline style tag here and not a separate component due to next/font */}
+                  <style
+                    dangerouslySetInnerHTML={{
+                      __html: `:root{--font-custom:${customFont.style.fontFamily};--font-source-code-pro:${sourceCodePro.style.fontFamily};}`,
+                    }}
+                  />
+                </Head>
+                <MetaFaviconsPagesRouter applicationName="Supabase Studio" />
+                <TooltipProvider delayDuration={0}>
+                  <ThemeProvider
+                    defaultTheme="system"
+                    themes={['dark', 'light', 'classic-dark']}
+                    enableSystem
+                    disableTransitionOnChange
+                  >
+                    <CommandProvider>
+                      {getLayout(<Component {...pageProps} />)}
+                      <StudioCommandMenu />
+                      <SonnerToaster position="top-right" />
+                      <MonacoThemeProvider />
+                    </CommandProvider>
+                  </ThemeProvider>
+                </TooltipProvider>
+                {!isTestEnv && <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />}
+              </ProfileProvider>
             </AuthProvider>
           </Hydrate>
         </NuqsAdapter>
       </QueryClientProvider>
-      <TelemetryTagManager />
     </ErrorBoundary>
   )
 }

@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, HelpCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import { useParams } from 'common'
+import { useParams } from '@common'
 import { useTableFilter } from 'components/grid/hooks/useTableFilter'
 import { useTableEditorQuery } from 'data/table-editor/table-editor-query'
 import { isTable } from 'data/table-editor/table-editor-types'
