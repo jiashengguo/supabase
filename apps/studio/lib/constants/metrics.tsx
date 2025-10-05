@@ -76,19 +76,6 @@ export const METRICS: Metric[] = [
     provider: 'daily-stats',
     category: METRIC_CATEGORIES.API,
   },
-  {
-    key: 'total_realtime_requests',
-    label: 'Realtime Connection Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_REALTIME,
-  },
-  {
-    key: 'total_realtime_ingress',
-    label: 'Realtime Connection Ingress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_REALTIME,
-  },
-
   /**
    * API
    */
@@ -141,123 +128,6 @@ export const METRICS: Metric[] = [
     category: METRIC_CATEGORIES.API_DATABASE,
   },
 
-  /**
-   * Auth
-   */
-
-  {
-    key: 'total_auth_billing_period_mau',
-    label: 'Auth Monthly Active User',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_billing_period_sso_mau',
-    label: 'Auth Monthly Active SSO User',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_ingress',
-    label: 'Auth Ingress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_egress',
-    label: 'Auth Egress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_requests',
-    label: 'Auth Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_get_requests',
-    label: 'Auth GET Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_post_requests',
-    label: 'Auth POST Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_patch_requests',
-    label: 'Auth PATCH Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-  {
-    key: 'total_auth_options_requests',
-    label: 'Auth OPTIONS Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-
-  /**
-   * Storage
-   */
-  {
-    key: 'total_storage_ingress',
-    label: 'Storage Ingress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_egress',
-    label: 'Storage Egress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_image_render_count',
-    label: 'Storage Image Transformations',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_requests',
-    label: 'Storage Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_get_requests',
-    label: 'Storage GET Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_post_requests',
-    label: 'Storage POST Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_delete_requests',
-    label: 'Storage DELETE Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_storage_options_requests',
-    label: 'Storage OPTIONS Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-  {
-    key: 'total_auth_delete_requests',
-    label: 'Auth DELETE Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_AUTH,
-  },
-
   {
     key: 'total_egress',
     label: 'All Egress',
@@ -272,19 +142,6 @@ export const METRICS: Metric[] = [
     category: METRIC_CATEGORIES.API,
   },
 
-  {
-    key: 'total_cached_egress',
-    label: 'All Cached Egress',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
-
-  {
-    key: 'total_storage_patch_requests',
-    label: 'Storage PATCH Requests',
-    provider: 'daily-stats',
-    category: METRIC_CATEGORIES.API_STORAGE,
-  },
   {
     key: 'total_requests',
     label: 'All Requests',

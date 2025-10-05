@@ -8,7 +8,6 @@ import { useParams } from '@common'
 import { RefreshButton } from 'components/grid/components/header/RefreshButton'
 import { APIDocsButton } from 'components/ui/APIDocsButton'
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
-import { useDatabasePoliciesQuery } from 'data/database-policies/database-policies-query'
 import {
   Entity,
   isTableLike,
@@ -16,7 +15,6 @@ import {
   isMaterializedView as isTableLikeMaterializedView,
   isView as isTableLikeView,
 } from 'data/table-editor/table-editor-types'
-import { useTableUpdateMutation } from 'data/tables/table-update-mutation'
 import { useAsyncCheckPermissions } from 'hooks/misc/useCheckPermissions'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { parseAsBoolean, useQueryState } from 'nuqs'
@@ -55,15 +53,6 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
   const isView = isTableLikeView(table)
   const isMaterializedView = isTableLikeMaterializedView(table)
 
-  const { mutate: updateTable } = useTableUpdateMutation({
-    onError: (error) => {
-      toast.error(`Failed to toggle RLS: ${error.message}`)
-    },
-    onSettled: () => {
-      closeConfirmModal()
-    },
-  })
-
   const [showEnableRealtime, setShowEnableRealtime] = useState(false)
   const [rlsConfirmModalOpen, setRlsConfirmModalOpen] = useState(false)
   const [isAutofixViewSecurityModalOpen, setIsAutofixViewSecurityModalOpen] = useState(false)
@@ -72,13 +61,6 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
   const showHeaderActions = snap.selectedRows.size === 0
 
   const projectRef = project?.ref
-  const { data } = useDatabasePoliciesQuery({
-    projectRef: project?.ref,
-    connectionString: project?.connectionString,
-  })
-  const policies = (data ?? []).filter(
-    (policy) => policy.schema === table.schema && policy.table === table.name
-  )
 
   const { can: canSqlWriteTables, isLoading: isLoadingPermissions } = useAsyncCheckPermissions(
     PermissionAction.TENANT_SQL_ADMIN_WRITE,
@@ -100,15 +82,6 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
       id: table.id,
       rls_enabled: !(isTable && table.rls_enabled),
     }
-
-    updateTable({
-      projectRef: project?.ref!,
-      connectionString: project?.connectionString,
-      id: table.id,
-      name: table.name,
-      schema: table.schema,
-      payload: payload,
-    })
   }
 
   const isRealtimeEnabled = false
@@ -129,102 +102,6 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
               </TooltipContent>
             </Tooltip>
           )}
-
-          {isTable ? (
-            table.rls_enabled ? (
-              <>
-                {policies.length < 1 ? (
-                  <ButtonTooltip
-                    asChild
-                    type="default"
-                    className="group"
-                    icon={<PlusCircle strokeWidth={1.5} className="text-foreground-muted" />}
-                    tooltip={{
-                      content: {
-                        side: 'bottom',
-                        className: 'w-[280px]',
-                        text: 'RLS is enabled for this table, but no policies are set. Select queries may return 0 results.',
-                      },
-                    }}
-                  >
-                    <Link
-                      passHref
-                      href={`/project/${projectRef}/auth/policies?search=${table.id}&schema=${table.schema}`}
-                    >
-                      Add RLS policy
-                    </Link>
-                  </ButtonTooltip>
-                ) : (
-                  <Button
-                    asChild
-                    type={policies.length < 1 ? 'warning' : 'default'}
-                    className="group"
-                    icon={
-                      policies.length > 0 ? (
-                        <div
-                          className={cn(
-                            'flex items-center justify-center rounded-full bg-border-stronger h-[16px]',
-                            policies.length > 9 ? ' px-1' : 'w-[16px]',
-                            ''
-                          )}
-                        >
-                          <span className="text-[11px] text-foreground font-mono text-center">
-                            {policies.length}
-                          </span>
-                        </div>
-                      ) : (
-                        <PlusCircle strokeWidth={1.5} />
-                      )
-                    }
-                  >
-                    <Link
-                      passHref
-                      href={`/project/${projectRef}/auth/policies?search=${table.id}&schema=${table.schema}`}
-                    >
-                      RLS {policies.length > 1 ? 'policies' : 'policy'}
-                    </Link>
-                  </Button>
-                )}
-              </>
-            ) : (
-              <Popover_Shadcn_ modal={false} open={showWarning} onOpenChange={setShowWarning}>
-                <PopoverTrigger_Shadcn_ asChild>
-                  <Button type="warning" icon={<Lock strokeWidth={1.5} />}>
-                    RLS disabled
-                  </Button>
-                </PopoverTrigger_Shadcn_>
-                <PopoverContent_Shadcn_
-                  // using `portal` for a safari fix. issue with rendering outside of body element
-                  portal
-                  className="w-80 text-sm"
-                  align="end"
-                >
-                  <h4 className="flex items-center gap-2">
-                    <Lock size={16} /> Row Level Security (RLS)
-                  </h4>
-                  <div className="grid gap-2 mt-4 text-foreground-light text-xs">
-                    <p>
-                      You can restrict and control who can read, write and update data in this table
-                      using Row Level Security.
-                    </p>
-                    <p>
-                      With RLS enabled, anonymous users will not be able to read/write data in the
-                      table.
-                    </p>
-                    {
-                      <Button
-                        type="default"
-                        className="mt-2 w-min"
-                        onClick={() => setRlsConfirmModalOpen(!rlsConfirmModalOpen)}
-                      >
-                        Enable RLS for this table
-                      </Button>
-                    }
-                  </div>
-                </PopoverContent_Shadcn_>
-              </Popover_Shadcn_>
-            )
-          ) : null}
 
           {isView && (
             <Popover_Shadcn_ modal={false} open={showWarning} onOpenChange={setShowWarning}>

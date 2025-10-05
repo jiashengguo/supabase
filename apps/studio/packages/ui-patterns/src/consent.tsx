@@ -1,6 +1,6 @@
 'use client'
 
-import { consentState, isBrowser, LOCAL_STORAGE_KEYS } from 'common'
+import { consentState, LOCAL_STORAGE_KEYS } from '@common'
 import { useCallback, useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import { cn } from 'ui'
@@ -14,8 +14,6 @@ export const useConsentToast = () => {
   const snap = useSnapshot(consentState)
 
   const acceptAll = useCallback(() => {
-    if (!isBrowser) return
-
     snap.acceptAll()
 
     if (consentToastId.current) {
@@ -24,8 +22,6 @@ export const useConsentToast = () => {
   }, [snap.acceptAll])
 
   const denyAll = useCallback(() => {
-    if (!isBrowser) return
-
     snap.denyAll()
     // remove the telemetry cookie
     document.cookie = `${TELEMETRY_DATA}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
@@ -36,7 +32,7 @@ export const useConsentToast = () => {
   }, [snap.denyAll])
 
   useEffect(() => {
-    if (isBrowser && snap.showConsentToast) {
+    if (snap.showConsentToast) {
       consentToastId.current = toast(<ConsentToast onAccept={acceptAll} onOptOut={denyAll} />, {
         id: 'consent-toast',
         position: 'bottom-right',

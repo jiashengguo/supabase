@@ -1,4 +1,3 @@
-import { MAX_CHARACTERS } from '@pg-meta/src/query/table-row-query'
 import { Button, cn } from 'ui'
 
 export const TruncatedWarningOverlay = ({
@@ -17,7 +16,7 @@ export const TruncatedWarningOverlay = ({
       )}
     >
       <div className="flex flex-col gap-y-1">
-        <p>Value is larger than {MAX_CHARACTERS.toLocaleString()} characters</p>
+        <p>Value is larger than 10*1024 characters</p>
         <p className="text-foreground-light">
           You may try to render the entire value, but your browser may run into performance issues
         </p>

@@ -1,8 +1,4 @@
 import { ident } from '../pg-format'
-import { PGForeignTable } from '../pg-meta-foreign-tables'
-import { PGMaterializedView } from '../pg-meta-materialized-views'
-import { PGTable } from '../pg-meta-tables'
-import { PGView } from '../pg-meta-views'
 import { Query } from './Query'
 import { Filter, Sort } from './types'
 
@@ -11,7 +7,7 @@ export const MAX_CHARACTERS = 10 * 1024 // 10KB
 // Max array size
 export const MAX_ARRAY_SIZE = 50
 
-export type TableLikeEntity = PGTable | PGView | PGForeignTable | PGMaterializedView
+export type TableLikeEntity = any
 
 export interface BuildTableRowsQueryArgs {
   table: TableLikeEntity
@@ -71,8 +67,8 @@ const LARGE_COLUMNS_TYPES_SET = new Set(LARGE_COLUMNS_TYPES)
 export const THRESHOLD_COUNT = 100000
 
 // Return the primary key columns if exists, otherwise return the first column to use as a default sort
-export const getDefaultOrderByColumns = (table: Pick<PGTable, 'primary_keys' | 'columns'>) => {
-  const primaryKeyColumns = table.primary_keys?.map((pk) => pk.name)
+export const getDefaultOrderByColumns = (table: any) => {
+  const primaryKeyColumns = table.primary_keys?.map((pk: any) => pk.name)
   if (primaryKeyColumns && primaryKeyColumns.length > 0) {
     return primaryKeyColumns
   }
@@ -118,7 +114,7 @@ export const getTableRowsSql = ({
   let queryChains = query.from(table.name, table.schema).select()
 
   filters.forEach((x) => {
-    const col = table.columns?.find((y) => y.name === x.column)
+    const col = table.columns?.find((y: any) => y.name === x.column)
     const isStringTypeColumn = !!col ? TEXT_TYPES.includes(col.format) : true
     queryChains = queryChains.filter(
       x.column,
@@ -129,11 +125,11 @@ export const getTableRowsSql = ({
 
   // If sorts is empty and table row count is within threshold, use the primary key as the default sort
   // Only apply for selections over a Table, not View, MaterializedViews, ...
-  const liveRowCount = (table as PGTable).live_rows_estimate || 0
+  const liveRowCount = (table as any).live_rows_estimate || 0
   if (sorts.length === 0 && liveRowCount <= THRESHOLD_COUNT && table.columns.length > 0) {
-    const defaultOrderByColumns = getDefaultOrderByColumns(table as PGTable)
+    const defaultOrderByColumns = getDefaultOrderByColumns(table as any)
     if (defaultOrderByColumns.length > 0) {
-      defaultOrderByColumns.forEach((col) => {
+      defaultOrderByColumns.forEach((col: any) => {
         queryChains = queryChains.order(table.name, col)
       })
     }
@@ -153,40 +149,43 @@ export const getTableRowsSql = ({
   const baseSelectQuery = `with _base_query as (${queryChains.range(from, to).toSql({ isCTE: false, isFinal: false })})`
 
   const allColumnNames = table.columns
-    .sort((a, b) => a.ordinal_position - b.ordinal_position)
-    .map((column) => ({ name: column.name, format: column.format.toLowerCase() }))
+    .sort((a: any, b: any) => a.ordinal_position - b.ordinal_position)
+    .map((column: any) => ({ name: column.name, format: column.format.toLowerCase() }))
 
   // Identify columns that might need truncation
   const columnsToTruncate = table.columns
-    .filter((column) => shouldTruncateColumn(column.format))
-    .map((column) => column.name)
+    .filter((column: any) => shouldTruncateColumn(column.format))
+    .map((column: any) => column.name)
 
   // Create select expressions for each column, applying truncation only to needed columns
-  const selectExpressions = allColumnNames.map(({ name: columnName }) => {
-    const escapedColumnName = ident(columnName)
+  const selectExpressions = allColumnNames.map(
+    ({ name, format }: { name: string; format: string }) => {
+      const columnName = name
+      const escapedColumnName = ident(columnName)
 
-    if (columnsToTruncate.includes(columnName)) {
-      return `case
+      if (columnsToTruncate.includes(columnName)) {
+        return `case
         when octet_length(${escapedColumnName}::text) > ${maxCharacters} 
         then left(${escapedColumnName}::text, ${maxCharacters}) || '...'
         else ${escapedColumnName}::text
       end as ${escapedColumnName}`
-    } else {
-      return escapedColumnName
+      } else {
+        return escapedColumnName
+      }
     }
-  })
+  )
 
   // Handle array-based columns
   const arrayBasedColumns = table.columns
-    .filter((column) => column.data_type.toLowerCase() === 'array')
+    .filter((column: any) => column.data_type.toLowerCase() === 'array')
     // remove the _ prefix for array based format
-    .map((column) => ({ name: column.name, format: column.format.toLowerCase().slice(1) }))
+    .map((column: any) => ({ name: column.name, format: column.format.toLowerCase().slice(1) }))
 
   // Add array casting for array-based enum columns
-  arrayBasedColumns.forEach(({ name: columnName, format }) => {
+  arrayBasedColumns.forEach(({ name: columnName, format }: { name: string; format: string }) => {
     // Find this column in our select expressions
     const index = selectExpressions.findIndex(
-      (expr) => expr === ident(columnName) // if the column is selected without any truncation applied to it
+      (expr: any) => expr === ident(columnName) // if the column is selected without any truncation applied to it
     )
     // If the column is a json, the final cast remain an array of json
     const typeCast = JSON_SET.has(format) ? `${format}[]` : 'text[]'
