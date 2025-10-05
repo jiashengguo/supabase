@@ -17,7 +17,6 @@ import {
 } from 'data/database/foreign-key-constraints-query'
 import { useEnumeratedTypesQuery } from 'data/enumerated-types/enumerated-types-query'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { useProtectedSchemas } from 'hooks/useProtectedSchemas'
 import type { Dictionary } from 'types'
 import { Button, Checkbox, Input, SidePanel, Toggle } from 'ui'
 import ActionBar from '../ActionBar'
@@ -83,10 +82,7 @@ const ColumnEditor = ({
     projectRef: project?.ref,
     connectionString: project?.connectionString,
   })
-  const { data: protectedSchemas } = useProtectedSchemas({ excludeSchemas: ['extensions'] })
-  const enumTypes = (types ?? []).filter(
-    (type) => !protectedSchemas.find((s) => s.name === type.schema)
-  )
+  const enumTypes = types ?? []
 
   const { data: constraints } = useTableConstraintsQuery({
     projectRef: project?.ref,

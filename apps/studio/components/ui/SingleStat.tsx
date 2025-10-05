@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-import { useSelectedOrganizationQuery } from 'hooks/misc/useSelectedOrganization'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 
 type SingleStatProps = {
@@ -27,20 +26,7 @@ export const SingleStat = ({
   trackingProperties,
 }: SingleStatProps) => {
   const { data: project } = useSelectedProjectQuery()
-  const { data: organization } = useSelectedOrganizationQuery()
 
-  const trackActivityStat = () => {
-    if (trackingProperties && project?.ref && organization?.slug) {
-      sendEvent({
-        action: 'home_activity_stat_clicked',
-        properties: trackingProperties,
-        groups: {
-          project: project.ref,
-          organization: organization.slug,
-        },
-      })
-    }
-  }
   const content = (
     <div className={`group flex items-center gap-4 p-0 text-base justify-start ${className || ''}`}>
       <div className="w-16 h-16 rounded-md bg-surface-75 group-hover:bg-muted border flex items-center justify-center">
@@ -57,7 +43,7 @@ export const SingleStat = ({
 
   if (href) {
     return (
-      <Link className="group block" href={href} onClick={trackActivityStat}>
+      <Link className="group block" href={href}>
         {content}
       </Link>
     )

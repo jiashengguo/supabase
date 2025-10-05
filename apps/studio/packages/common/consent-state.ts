@@ -1,12 +1,9 @@
-import type Usercentrics from '@usercentrics/cmp-browser-sdk'
-import type { BaseCategory, UserDecision } from '@usercentrics/cmp-browser-sdk'
 import { proxy, snapshot, useSnapshot } from 'valtio'
-import { IS_PLATFORM, LOCAL_STORAGE_KEYS } from './constants'
 
 export const consentState = proxy({
   // Usercentrics state
-  UC: null as Usercentrics | null,
-  categories: null as BaseCategory[] | null,
+  UC: null,
+  categories: null,
 
   // Our state
   showConsentToast: false,
@@ -17,15 +14,6 @@ export const consentState = proxy({
 
     consentState.hasConsented = true
     consentState.showConsentToast = false
-
-    consentState.UC.acceptAllServices()
-      .then(() => {
-        consentState.categories = consentState.UC?.getCategoriesBaseInfo() ?? null
-      })
-      .catch(() => {
-        consentState.hasConsented = previousConsentValue
-        consentState.showConsentToast = true
-      })
   },
   denyAll: () => {
     if (!consentState.UC) return
@@ -33,28 +21,6 @@ export const consentState = proxy({
 
     consentState.hasConsented = false
     consentState.showConsentToast = false
-
-    consentState.UC.denyAllServices()
-      .then(() => {
-        consentState.categories = consentState.UC?.getCategoriesBaseInfo() ?? null
-      })
-      .catch(() => {
-        consentState.showConsentToast = previousConsentValue
-      })
-  },
-  updateServices: (decisions: UserDecision[]) => {
-    if (!consentState.UC) return
-
-    consentState.showConsentToast = false
-
-    consentState.UC.updateServices(decisions)
-      .then(() => {
-        consentState.hasConsented = consentState.UC?.areAllConsentsAccepted() ?? false
-        consentState.categories = consentState.UC?.getCategoriesBaseInfo() ?? null
-      })
-      .catch(() => {
-        consentState.showConsentToast = true
-      })
   },
 })
 
@@ -105,9 +71,7 @@ export function useConsentState() {
 
   return {
     hasAccepted: snap.hasConsented,
-    categories: snap.categories as BaseCategory[] | null,
     acceptAll: snap.acceptAll,
     denyAll: snap.denyAll,
-    updateServices: snap.updateServices,
   }
 }

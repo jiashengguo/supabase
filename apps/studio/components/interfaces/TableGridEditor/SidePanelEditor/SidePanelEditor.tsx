@@ -300,77 +300,6 @@ const SidePanelEditor = ({
     })
   }
 
-  const updateTableRealtime = async (table: RetrieveTableResult, enabled: boolean) => {
-    if (!project) return console.error('Project is required')
-    const realtimePublication = publications?.find((pub) => pub.name === 'supabase_realtime')
-
-    try {
-      if (realtimePublication === undefined) {
-        const realtimeTables = enabled ? [`${table.schema}.${table.name}`] : []
-        await createPublication({
-          projectRef: project.ref,
-          connectionString: project.connectionString,
-          name: 'supabase_realtime',
-          publish_insert: true,
-          publish_update: true,
-          publish_delete: true,
-          tables: realtimeTables,
-        })
-        return
-      }
-      if (realtimePublication.tables === null) {
-        // UI doesn't have support for toggling realtime for ALL tables
-        // Switch it to individual tables via an array of strings
-        // Refer to PublicationStore for more information about this
-        const publicTables = await queryClient.fetchQuery({
-          queryKey: tableKeys.list(project.ref, 'public', includeColumns),
-          queryFn: ({ signal }) =>
-            getTables(
-              {
-                projectRef: project.ref,
-                connectionString: project.connectionString,
-                schema: 'public',
-              },
-              signal
-            ),
-        })
-        // TODO: support tables in non-public schemas
-        const realtimeTables = enabled
-          ? publicTables.map((t) => `${t.schema}.${t.name}`)
-          : publicTables.filter((t) => t.id !== table.id).map((t) => `${t.schema}.${t.name}`)
-        await updatePublication({
-          id: realtimePublication.id,
-          projectRef: project.ref,
-          connectionString: project.connectionString,
-          tables: realtimeTables,
-        })
-        return
-      }
-      const isAlreadyEnabled = realtimePublication.tables.some((x) => x.id == table.id)
-      const realtimeTables =
-        isAlreadyEnabled && !enabled
-          ? // Toggle realtime off
-            realtimePublication.tables
-              .filter((t) => t.id !== table.id)
-              .map((t) => `${t.schema}.${t.name}`)
-          : !isAlreadyEnabled && enabled
-            ? // Toggle realtime on
-              realtimePublication.tables
-                .map((t) => `${t.schema}.${t.name}`)
-                .concat([`${table.schema}.${table.name}`])
-            : null
-      if (realtimeTables === null) return
-      await updatePublication({
-        id: realtimePublication.id,
-        projectRef: project.ref,
-        connectionString: project.connectionString,
-        tables: realtimeTables,
-      })
-    } catch (error: any) {
-      toast.error(`Failed to update realtime for ${table.name}: ${error.message}`)
-    }
-  }
-
   const saveTable = async (
     payload: {
       name: string
@@ -418,7 +347,6 @@ const SidePanelEditor = ({
           duplicateTable: tableToDuplicate,
           foreignKeyRelations,
         })
-        if (isRealtimeEnabled) await updateTableRealtime(table, isRealtimeEnabled)
 
         await Promise.all([
           queryClient.invalidateQueries(tableKeys.list(project?.ref, table.schema, includeColumns)),
@@ -443,7 +371,6 @@ const SidePanelEditor = ({
           isRLSEnabled,
           importContent,
         })
-        if (isRealtimeEnabled) await updateTableRealtime(table, true)
 
         await Promise.all([
           queryClient.invalidateQueries(tableKeys.list(project?.ref, table.schema, includeColumns)),
@@ -469,9 +396,6 @@ const SidePanelEditor = ({
 
         if (table === undefined) {
           return toast.error('Failed to update table')
-        }
-        if (isTableLike(table)) {
-          await updateTableRealtime(table, isRealtimeEnabled)
         }
 
         if (hasError) {

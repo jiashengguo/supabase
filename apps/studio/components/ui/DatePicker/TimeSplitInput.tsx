@@ -1,13 +1,23 @@
 import { format } from 'date-fns'
 import { Clock } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 
-import {
-  isUnixMicro,
-  unixMicroToIsoTimestamp,
-} from 'components/interfaces/Settings/Logs/Logs.utils'
 import { cn } from 'ui'
 import type { TimeSplitInputProps, TimeType } from './DatePicker.types'
+
+/**
+ * Convert a micro timestamp from number/string to iso timestamp
+ */
+export const unixMicroToIsoTimestamp = (unix: string | number): string => {
+  return dayjs.utc(Number(unix) / 1000).toISOString()
+}
+
+export const isUnixMicro = (unix: string | number): boolean => {
+  const digitLength = String(unix).length === 16
+  const isNum = !Number.isNaN(Number(unix))
+  return isNum && digitLength
+}
 
 const inputStyle = cn(
   'w-6 p-0 text-center text-xs text-foreground outline-none cursor-text',

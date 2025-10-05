@@ -21,8 +21,6 @@ import {
 export const HelpPopover = () => {
   const router = useRouter()
   const { data: project } = useSelectedProjectQuery()
-  const { data: org } = useSelectedOrganizationQuery()
-  const snap = useAiAssistantStateSnapshot()
 
   const projectRef = project?.parent_project_ref ?? router.query.ref
   const supportUrl = `/support/new${projectRef ? `?projectRef=${projectRef}` : ''}`
@@ -42,12 +40,6 @@ export const HelpPopover = () => {
             />
           }
           tooltip={{ content: { side: 'bottom', text: 'Help' } }}
-          onClick={() => {
-            sendEvent({
-              action: 'help_button_clicked',
-              groups: { project: project?.ref, organization: org?.slug },
-            })
-          }}
         />
       </PopoverTrigger_Shadcn_>
       <PopoverContent_Shadcn_ className="w-[400px] space-y-4 p-0 py-5" align="end" side="bottom">
@@ -64,31 +56,7 @@ export const HelpPopover = () => {
               <ButtonGroupItem
                 size="tiny"
                 icon={<AiIconAnimation allowHoverEffect size={14} />}
-                onClick={() => {
-                  snap.newChat({
-                    name: 'Support',
-                    open: true,
-                    initialInput: `I need help with my project`,
-                    suggestions: {
-                      title:
-                        'I can help you with your project, here are some example prompts to get you started:',
-                      prompts: [
-                        {
-                          label: 'Database Health',
-                          description: 'Summarise my database health and performance',
-                        },
-                        {
-                          label: 'Debug Logs',
-                          description: 'View and debug my edge function logs',
-                        },
-                        {
-                          label: 'RLS Setup',
-                          description: 'Implement row level security for my tables',
-                        },
-                      ],
-                    },
-                  })
-                }}
+                onClick={() => {}}
               >
                 Supabase Assistant
               </ButtonGroupItem>

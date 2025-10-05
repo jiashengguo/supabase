@@ -6,7 +6,6 @@ import { executeSql } from 'data/sql/execute-sql-query'
 import useLatest from 'hooks/misc/useLatest'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { getPostgrestClaims, ImpersonationRole } from 'lib/role-impersonation'
-import { CustomAccessTokenHookDetails } from '../hooks/misc/useCustomAccessTokenHookDetails'
 
 export function createRoleImpersonationState(
   projectRef: string,
@@ -23,23 +22,8 @@ export function createRoleImpersonationState(
     role: undefined as ImpersonationRole | undefined,
     claims: undefined as ReturnType<typeof getPostgrestClaims> | undefined,
 
-    setRole: async (
-      role: ImpersonationRole | undefined,
-      customAccessTokenHookDetails?: CustomAccessTokenHookDetails
-    ) => {
+    setRole: async (role: ImpersonationRole | undefined) => {
       let claims = role?.type === 'postgrest' ? getPostgrestClaims(projectRef, role) : undefined
-
-      if (customAccessTokenHookDetails?.type === 'postgres' && claims !== undefined) {
-        const { schema, functionName } = customAccessTokenHookDetails
-        const updatedClaims = await customizeAccessTokenRef.current({
-          schema,
-          functionName,
-          claims,
-        })
-        if (updatedClaims) {
-          claims = updatedClaims
-        }
-      }
 
       roleImpersonationState.role = role
       if (claims) {

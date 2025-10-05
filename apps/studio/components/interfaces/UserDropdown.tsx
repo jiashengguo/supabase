@@ -33,8 +33,6 @@ export function UserDropdown() {
   const { theme, setTheme } = useTheme()
   const appStateSnapshot = useAppStateSnapshot()
   const setCommandMenuOpen = useSetCommandMenuOpen()
-  const { openFeaturePreviewModal } = useFeaturePreviewModal()
-  const profileShowEmailEnabled = useIsFeatureEnabled('profile:show_email')
 
   const { username, primary_email } = profile ?? {}
 
@@ -75,7 +73,7 @@ export function UserDropdown() {
                   <span title={username} className="w-full text-left text-foreground truncate">
                     {username}
                   </span>
-                  {primary_email !== username && profileShowEmailEnabled && (
+                  {primary_email !== username && (
                     <span
                       title={primary_email}
                       className="w-full text-left text-foreground-light text-xs truncate"
@@ -100,14 +98,6 @@ export function UserDropdown() {
                   <Settings size={14} strokeWidth={1.5} className="text-foreground-lighter" />
                   Account preferences
                 </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="flex gap-2"
-                onClick={openFeaturePreviewModal}
-                onSelect={openFeaturePreviewModal}
-              >
-                <FlaskConical size={14} strokeWidth={1.5} className="text-foreground-lighter" />
-                Feature previews
               </DropdownMenuItem>
               <DropdownMenuItem className="flex gap-2" onClick={() => setCommandMenuOpen(true)}>
                 <Command size={14} strokeWidth={1.5} className="text-foreground-lighter" />

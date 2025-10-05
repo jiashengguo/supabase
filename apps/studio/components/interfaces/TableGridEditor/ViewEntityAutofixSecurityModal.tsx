@@ -37,11 +37,6 @@ export default function ViewEntityAutofixSecurityModal({
     const sql = `
 	ALTER VIEW "${table.schema}"."${table.name}" SET (security_invoker = on);
 	`
-    execute({
-      projectRef: project?.ref,
-      connectionString: project?.connectionString,
-      sql,
-    })
   }
 
   if (!isViewLike(table)) {

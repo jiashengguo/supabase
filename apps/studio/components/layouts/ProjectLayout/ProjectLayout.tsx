@@ -319,37 +319,5 @@ const ContentWrapper = ({ isLoading, isBlocking = true, children }: ContentWrapp
     return router.pathname.endsWith('[ref]') ? <LoadingState /> : <Loading />
   }
 
-  if (isRestarting && !isBackupsPage) {
-    return <RestartingState />
-  }
-
-  if (isResizing && !isBackupsPage) {
-    return <ResizingState />
-  }
-
-  if (isProjectPausing) {
-    return <PausingState project={selectedProject} />
-  }
-
-  if (isProjectPauseFailed) {
-    return <PauseFailedState />
-  }
-
-  if (requiresPostgrestConnection && isProjectOffline) {
-    return <ConnectingState project={selectedProject} />
-  }
-
-  if (requiresDbConnection && isProjectRestoring) {
-    return <RestoringState />
-  }
-
-  if (isProjectRestoreFailed && !isBackupsPage) {
-    return <RestoreFailedState />
-  }
-
-  if (requiresDbConnection && isProjectBuilding && !isBranchesPage) {
-    return <BuildingState />
-  }
-
   return <Fragment key={selectedProject?.ref}>{children}</Fragment>
 }

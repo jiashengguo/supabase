@@ -44,14 +44,6 @@ export function withAuth<T>(
       },
     })
 
-    usePermissionsQuery({
-      onError(error: any) {
-        toast.error(
-          `Failed to fetch permissions: ${error.message}. Try refreshing your browser, or reach out to us via a support ticket if the issue persists`
-        )
-      },
-    })
-
     const isLoggedIn = Boolean(session)
     const isFinishedLoading = !isLoading && !isAALLoading
 
@@ -115,11 +107,6 @@ export function withAuth<T>(
 
     return (
       <>
-        <SessionTimeoutModal
-          visible={isSessionTimeoutModalOpen}
-          onClose={() => setIsSessionTimeoutModalOpen(false)}
-          redirectToSignIn={redirectToSignIn}
-        />
         <InnerComponent {...props} />
       </>
     )

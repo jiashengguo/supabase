@@ -57,7 +57,6 @@ const ColumnManagement = ({
   onUpdateFkRelations,
 }: ColumnManagementProps) => {
   const { ref: projectRef } = useParams()
-  const { data: org } = useSelectedOrganizationQuery()
 
   const [open, setOpen] = useState(false)
   const [selectedColumn, setSelectedColumn] = useState<ColumnField>()
@@ -165,14 +164,6 @@ const ColumnManagement = ({
                     type="default"
                     onClick={() => {
                       onSelectImportData()
-                      sendEvent({
-                        action: 'import_data_button_clicked',
-                        properties: { tableType: 'New Table' },
-                        groups: {
-                          project: projectRef ?? 'Unknown',
-                          organization: org?.slug ?? 'Unknown',
-                        },
-                      })
                     }}
                   >
                     Import data from CSV

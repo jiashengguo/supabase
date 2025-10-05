@@ -1,14 +1,6 @@
 import { PermissionAction } from '@supabase/shared-types/out/constants'
-import { OrganizationBase } from 'data/organizations/organizations-query'
-import { PlanId } from 'data/subscriptions/types'
 import jsonLogic from 'json-logic-js'
 import { ManagedBy } from 'lib/constants/infrastructure'
-
-export interface Organization extends OrganizationBase {
-  managed_by: ManagedBy
-  partner_id?: string
-  plan: { id: PlanId; name: string }
-}
 
 /**
  * @deprecated Please use type from projects-query OR project-details-query.ts instead

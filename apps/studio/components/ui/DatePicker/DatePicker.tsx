@@ -4,7 +4,6 @@ import { ArrowRight, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import { ReactNode, useEffect, useState } from 'react'
 import ReactDatePicker from 'react-datepicker'
 
-import type { DatePickerToFrom } from 'components/interfaces/Settings/Logs/Logs.types'
 import {
   Button,
   Popover,
@@ -15,6 +14,7 @@ import {
 import { ButtonProps } from 'ui/src/components/Button/Button'
 import { TimeSplitInput } from './TimeSplitInput'
 
+export type DatePickerToFrom = { to: string | null; from: string | null }
 export interface DatePickerProps {
   onChange?: (args: DatePickerToFrom) => void
   to?: string // ISO string

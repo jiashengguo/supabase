@@ -1,5 +1,3 @@
-import { ChartConfig } from 'components/interfaces/SQLEditor/UtilityPanel/ChartConfig'
-
 export interface UserContent<
   T = Dashboards.Content | SqlSnippets.Content | LogSqlSnippets.Content,
 > {
@@ -109,7 +107,6 @@ export namespace Dashboards {
     attribute: ChartType
     provider: 'daily-stats' | 'infra-monitoring'
     chart_type: 'bar' | 'line'
-    chartConfig?: Partial<ChartConfig>
   }
 }
 

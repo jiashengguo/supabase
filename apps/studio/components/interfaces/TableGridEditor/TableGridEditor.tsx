@@ -17,7 +17,6 @@ import {
 import { useAsyncCheckPermissions } from 'hooks/misc/useCheckPermissions'
 import { useDashboardHistory } from 'hooks/misc/useDashboardHistory'
 import { useUrlState } from 'hooks/ui/useUrlState'
-import { useIsProtectedSchema } from 'hooks/useProtectedSchemas'
 import { TableEditorTableStateContextProvider } from 'state/table-editor-table'
 import { createTabId, useTabsStateSnapshot } from 'state/tabs'
 import { Button } from 'ui'
@@ -80,8 +79,6 @@ export const TableGridEditor = ({
     }
   }, [router, selectedTable, tabs])
 
-  const { isSchemaLocked } = useIsProtectedSchema({ schema: selectedTable?.schema ?? '' })
-
   // NOTE: DO NOT PUT HOOKS AFTER THIS LINE
   if (isLoadingSelectedTable || !projectRef) {
     return (
@@ -99,7 +96,7 @@ export const TableGridEditor = ({
   const isTableSelected = isTableLike(selectedTable)
   const isForeignTableSelected = isForeignTable(selectedTable)
 
-  const canEditViaTableEditor = isTableSelected && !isSchemaLocked
+  const canEditViaTableEditor = isTableSelected
   const editable = !isReadOnly && canEditViaTableEditor
 
   const gridKey = !!selectedTable

@@ -6,7 +6,6 @@ import { toast } from 'sonner'
 
 import { useParams } from '@common'
 import { RefreshButton } from 'components/grid/components/header/RefreshButton'
-import { getEntityLintDetails } from 'components/interfaces/TableGridEditor/TableEntity.utils'
 import { APIDocsButton } from 'components/ui/APIDocsButton'
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
 import { useDatabasePoliciesQuery } from 'data/database-policies/database-policies-query'
@@ -20,7 +19,6 @@ import {
 import { useTableUpdateMutation } from 'data/tables/table-update-mutation'
 import { useAsyncCheckPermissions } from 'hooks/misc/useCheckPermissions'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { useIsProtectedSchema } from 'hooks/useProtectedSchemas'
 import { parseAsBoolean, useQueryState } from 'nuqs'
 import { useTableEditorTableStateSnapshot } from 'state/table-editor-table'
 import {
@@ -56,8 +54,6 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
   const isForeignTable = isTableLikeForeignTable(table)
   const isView = isTableLikeView(table)
   const isMaterializedView = isTableLikeMaterializedView(table)
-
-  const { isSchemaLocked } = useIsProtectedSchema({ schema: table.schema })
 
   const { mutate: updateTable } = useTableUpdateMutation({
     onError: (error) => {
@@ -134,10 +130,10 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
             </Tooltip>
           )}
 
-          {isTable && !isSchemaLocked ? (
+          {isTable ? (
             table.rls_enabled ? (
               <>
-                {policies.length < 1 && !isSchemaLocked ? (
+                {policies.length < 1 ? (
                   <ButtonTooltip
                     asChild
                     type="default"
@@ -161,10 +157,10 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
                 ) : (
                   <Button
                     asChild
-                    type={policies.length < 1 && !isSchemaLocked ? 'warning' : 'default'}
+                    type={policies.length < 1 ? 'warning' : 'default'}
                     className="group"
                     icon={
-                      isSchemaLocked || policies.length > 0 ? (
+                      policies.length > 0 ? (
                         <div
                           className={cn(
                             'flex items-center justify-center rounded-full bg-border-stronger h-[16px]',
@@ -215,7 +211,7 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
                       With RLS enabled, anonymous users will not be able to read/write data in the
                       table.
                     </p>
-                    {!isSchemaLocked && (
+                    {
                       <Button
                         type="default"
                         className="mt-2 w-min"
@@ -223,7 +219,7 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
                       >
                         Enable RLS for this table
                       </Button>
-                    )}
+                    }
                   </div>
                 </PopoverContent_Shadcn_>
               </Popover_Shadcn_>
@@ -305,14 +301,7 @@ export const GridHeaderActions = ({ table, isRefetching }: GridHeaderActionsProp
                   </p>
 
                   <div className="mt-2">
-                    <Button type="default" asChild>
-                      <Link
-                        target="_blank"
-                        href={`/project/${ref}/advisors/security?preset=${matchingMaterializedViewLint?.level}&id=${matchingMaterializedViewLint?.cache_key}`}
-                      >
-                        Learn more
-                      </Link>
-                    </Button>
+                    <Button type="default" asChild></Button>
                   </div>
                 </div>
               </PopoverContent_Shadcn_>

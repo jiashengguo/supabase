@@ -120,14 +120,7 @@ export function useAsyncCheckPermissions(
     if (!isLoggedIn) return false
     if (!isPermissionsSuccess || !allPermissions) return false
 
-    return doPermissionsCheck(
-      allPermissions,
-      action,
-      resource,
-      data,
-      _organizationSlug,
-      _projectRef
-    )
+    return doPermissionsCheck(allPermissions, action, resource, data, _organizationSlug)
   }, [
     isLoggedIn,
     isPermissionsSuccess,

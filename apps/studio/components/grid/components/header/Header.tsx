@@ -175,14 +175,6 @@ const DefaultHeader = () => {
                             className="group space-x-2"
                             onClick={() => {
                               onImportData()
-                              sendEvent({
-                                action: 'import_data_button_clicked',
-                                properties: { tableType: 'Existing Table' },
-                                groups: {
-                                  project: projectRef ?? 'Unknown',
-                                  organization: org?.slug ?? 'Unknown',
-                                },
-                              })
                             }}
                           >
                             <div className="relative -mt-2">

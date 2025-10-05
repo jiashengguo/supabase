@@ -125,24 +125,6 @@ export const EditorPanel = ({
     setShowWarning(undefined)
 
     if (currentValue.length === 0) return
-
-    if (!skipValidation) {
-      const isReadOnlySelectSQL = isReadOnlySelect(currentValue)
-      if (!isReadOnlySelectSQL) {
-        const hasUnknownFunctions = containsUnknownFunction(currentValue)
-        setShowWarning(hasUnknownFunctions ? 'hasUnknownFunctions' : 'hasWriteOperation')
-        return
-      }
-    }
-    executeSql({
-      sql: suffixWithLimit(currentValue, 100),
-      projectRef: project?.ref,
-      connectionString: project?.connectionString,
-      handleError: (error) => {
-        throw error
-      },
-      contextualInvalidation: true,
-    })
   }
 
   const handleChange = (value: string) => {
@@ -303,11 +285,6 @@ export const EditorPanel = ({
 
           {results !== undefined && results.length > 0 && (
             <div className={`max-h-72 shrink-0 flex flex-col ${showResults && 'h-full'}`}>
-              {showResults && (
-                <div className="border-t flex-1 overflow-auto">
-                  <Results rows={results} />
-                </div>
-              )}
               <p className="text-xs text-foreground-light border-t py-2 px-5 flex items-center justify-between">
                 <span className="font-mono">
                   {results.length} rows{results.length >= 100 && ` (Limited to only 100 rows)`}

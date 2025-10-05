@@ -3,8 +3,6 @@ import Link from 'next/link'
 
 import { useDebounce } from '@uidotdev/usehooks'
 import { LOCAL_STORAGE_KEYS, useParams } from '@common'
-import { useOrgProjectsInfiniteQuery } from 'data/projects/projects-infinite-query'
-import { useIsFeatureEnabled } from 'hooks/misc/useIsFeatureEnabled'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { PROJECT_STATUS } from 'lib/constants'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
@@ -32,7 +30,6 @@ export const HomePageActions = ({
   showViewToggle = false,
 }: HomePageActionsProps) => {
   const { slug: urlSlug } = useParams()
-  const projectCreationEnabled = useIsFeatureEnabled('projects:create')
 
   const slug = _slug ?? urlSlug
   const [search, setSearch] = useQueryState('search', parseAsString.withDefault(''))
@@ -42,15 +39,6 @@ export const HomePageActions = ({
     parseAsArrayOf(parseAsString, ',').withDefault([])
   )
   const [viewMode, setViewMode] = useLocalStorageQuery(LOCAL_STORAGE_KEYS.PROJECTS_VIEW, 'grid')
-
-  const { isFetching: isFetchingProjects } = useOrgProjectsInfiniteQuery(
-    {
-      slug,
-      search: search.length === 0 ? search : debouncedSearch,
-      statuses: filterStatus,
-    },
-    { keepPreviousData: true }
-  )
 
   return (
     <div className="flex items-center justify-between">
@@ -125,8 +113,6 @@ export const HomePageActions = ({
             </div>
           </PopoverContent_Shadcn_>
         </Popover_Shadcn_>
-
-        {isFetchingProjects && <Loader2 className="animate-spin" size={14} />}
       </div>
 
       <div className="flex items-center gap-2">
@@ -144,12 +130,6 @@ export const HomePageActions = ({
               <List size={14} strokeWidth={1.5} />
             </ToggleGroupItem>
           </ToggleGroup>
-        )}
-
-        {projectCreationEnabled && !hideNewProject && (
-          <Button asChild icon={<Plus />} type="primary" size="tiny">
-            <Link href={`/new/${slug}`}>New project</Link>
-          </Button>
         )}
       </div>
     </div>

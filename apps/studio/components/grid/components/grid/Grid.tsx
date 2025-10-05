@@ -196,14 +196,6 @@ export const Grid = memo(
                             className="pointer-events-auto"
                             onClick={() => {
                               tableEditorSnap.onImportData()
-                              sendEvent({
-                                action: 'import_data_button_clicked',
-                                properties: { tableType: 'Existing Table' },
-                                groups: {
-                                  project: project?.ref ?? 'Unknown',
-                                  organization: org?.slug ?? 'Unknown',
-                                },
-                              })
                             }}
                           >
                             Import data from CSV

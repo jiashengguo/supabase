@@ -10,10 +10,7 @@ import {
   MAX_EXPORT_ROW_COUNT_MESSAGE,
 } from 'components/grid/components/header/Header'
 import { LOAD_TAB_FROM_CACHE_PARAM, parseSupaTable } from 'components/grid/SupabaseGrid.utils'
-import {
-  formatTableRowsToSQL,
-  getEntityLintDetails,
-} from 'components/interfaces/TableGridEditor/TableEntity.utils'
+import { formatTableRowsToSQL } from 'components/interfaces/TableGridEditor/TableEntity.utils'
 import { EntityTypeIcon } from 'components/ui/EntityTypeIcon'
 import type { ItemRenderer } from 'components/ui/InfiniteList'
 import { InlineLink } from 'components/ui/InlineLink'
@@ -239,9 +236,6 @@ const EntityListItem: ItemRenderer<Entity, EntityListItemProps> = ({
           >
             {entity.name}
           </span>
-          <div>
-            <EntityTooltipTrigger entity={entity} />
-          </div>
         </div>
 
         {canEdit && (

@@ -18,7 +18,6 @@ import { useEnumeratedTypesQuery } from 'data/enumerated-types/enumerated-types-
 import { useQuerySchemaState } from 'hooks/misc/useSchemaQueryState'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useUrlState } from 'hooks/ui/useUrlState'
-import { useProtectedSchemas } from 'hooks/useProtectedSchemas'
 import { useTableEditorStateSnapshot } from 'state/table-editor'
 import { Badge, Checkbox, Input, SidePanel } from 'ui'
 import { Admonition } from 'ui-patterns'
@@ -93,11 +92,8 @@ export const TableEditor = ({
     projectRef: project?.ref,
     connectionString: project?.connectionString,
   })
-  const { data: protectedSchemas } = useProtectedSchemas({ excludeSchemas: ['extensions'] })
-  const enumTypes = (types ?? []).filter(
-    (type) => !protectedSchemas.find((s) => s.name === type.schema)
-  )
 
+  const enumTypes = types ?? []
   const [errors, setErrors] = useState<any>({})
   const [tableFields, setTableFields] = useState<TableField>()
   const [fkRelations, setFkRelations] = useState<ForeignKey[]>([])
@@ -217,8 +213,7 @@ export const TableEditor = ({
         const tableFields = generateTableFieldFromPostgresTable(
           table,
           foreignKeyMeta || [],
-          isDuplicating,
-          isRealtimeEnabled
+          isDuplicating
         )
         setTableFields(tableFields)
       }
@@ -337,30 +332,6 @@ export const TableEditor = ({
             />
           </Admonition>
         )}
-
-        {realtimeEnabled && (
-          <Checkbox
-            id="enable-realtime"
-            label="Enable Realtime"
-            description="Broadcast changes on this table to authorized subscribers"
-            checked={tableFields.isRealtimeEnabled}
-            onChange={() => {
-              sendEvent({
-                action: 'realtime_toggle_table_clicked',
-                properties: {
-                  newState: tableFields.isRealtimeEnabled ? 'disabled' : 'enabled',
-                  origin: 'tableSidePanel',
-                },
-                groups: {
-                  project: project?.ref ?? 'Unknown',
-                  organization: org?.slug ?? 'Unknown',
-                },
-              })
-              onUpdateField({ isRealtimeEnabled: !tableFields.isRealtimeEnabled })
-            }}
-            size="medium"
-          />
-        )}
       </SidePanel.Content>
 
       <SidePanel.Separator />
@@ -395,17 +366,6 @@ export const TableEditor = ({
             />
           </>
         )}
-
-        <SpreadsheetImport
-          visible={isImportingSpreadsheet}
-          headers={importContent?.headers}
-          rows={importContent?.rows}
-          saveContent={(prefillData: ImportContent) => {
-            setImportContent(prefillData)
-            setIsImportingSpreadsheet(false)
-          }}
-          closePanel={() => setIsImportingSpreadsheet(false)}
-        />
 
         <ConfirmationModal
           visible={rlsConfirmVisible}

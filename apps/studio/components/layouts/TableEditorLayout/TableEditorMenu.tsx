@@ -6,7 +6,6 @@ import { useParams } from '@common'
 import { useBreakpoint } from 'common/hooks/useBreakpoint'
 import { parseSupaTable } from 'components/grid/SupabaseGrid.utils'
 import { SupaTable } from 'components/grid/types'
-import { ProtectedSchemaWarning } from 'components/interfaces/Database/ProtectedSchemaWarning'
 import EditorMenuListSkeleton from 'components/layouts/TableEditorLayout/EditorMenuListSkeleton'
 import AlertError from 'components/ui/AlertError'
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
@@ -19,7 +18,6 @@ import { useAsyncCheckPermissions } from 'hooks/misc/useCheckPermissions'
 import { useLocalStorage } from 'hooks/misc/useLocalStorage'
 import { useQuerySchemaState } from 'hooks/misc/useSchemaQueryState'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { useIsProtectedSchema } from 'hooks/useProtectedSchemas'
 import { useTableEditorStateSnapshot } from 'state/table-editor'
 import {
   Button,
@@ -89,8 +87,6 @@ export const TableEditorMenu = () => {
     'tables'
   )
 
-  const { isSchemaLocked } = useIsProtectedSchema({ schema: selectedSchema })
-
   const { data: selectedTable } = useTableEditorQuery({
     projectRef: project?.ref,
     connectionString: project?.connectionString,
@@ -136,7 +132,7 @@ export const TableEditorMenu = () => {
           />
 
           <div className="grid gap-3 mx-4">
-            {!isSchemaLocked ? (
+            {
               <ButtonTooltip
                 block
                 title="Create a new table"
@@ -158,9 +154,7 @@ export const TableEditorMenu = () => {
               >
                 New table
               </ButtonTooltip>
-            ) : (
-              <ProtectedSchemaWarning size="sm" schema={selectedSchema} entity="table" />
-            )}
+            }
           </div>
         </div>
         <div className="flex flex-auto flex-col gap-2 pb-4">
@@ -268,7 +262,6 @@ export const TableEditorMenu = () => {
                     itemProps={{
                       projectRef: project?.ref!,
                       id: Number(id),
-                      isSchemaLocked,
                       onExportCLI: () => onSelectExportCLI(Number(id)),
                     }}
                     getItemSize={() => 28}

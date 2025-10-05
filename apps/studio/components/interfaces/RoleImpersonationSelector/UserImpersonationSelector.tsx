@@ -142,14 +142,7 @@ const UserImpersonationSelector = () => {
     setAal((prev) => (prev === 'aal2' ? 'aal1' : 'aal2'))
   }
 
-  const displayName = impersonatingUser
-    ? getDisplayName(
-        impersonatingUser,
-        impersonatingUser.email ?? impersonatingUser.phone ?? impersonatingUser.id ?? 'Unknown'
-      )
-    : isExternalAuthImpersonating
-      ? state.role.externalAuth.sub
-      : undefined
+  const displayName = isExternalAuthImpersonating ? state.role.externalAuth.sub : undefined
 
   // Clear all search history
   function clearSearchHistory() {
@@ -453,17 +446,12 @@ const UserImpersonatingRow = ({
   isLoading = false,
   aal,
 }: UserRowProps & { aal: AuthenticatorAssuranceLevels }) => {
-  const avatarUrl = getAvatarUrl(user)
-  const displayName =
-    getDisplayName(user, user.email ?? user.phone ?? user.id ?? 'Unknown') +
-    (user.is_anonymous ? ' (anonymous)' : '')
-
   return (
     <BaseImpersonatingRow
       onClick={() => onClick(user)}
       aal={aal}
-      displayName={displayName}
-      avatarUrl={avatarUrl}
+      displayName={'unknown'}
+      avatarUrl={undefined}
       isImpersonating={isImpersonating}
       isLoading={isLoading}
     />
@@ -502,9 +490,9 @@ interface UserRowProps {
 }
 
 const UserRow = ({ user, onClick, isImpersonating = false, isLoading = false }: UserRowProps) => {
-  const avatarUrl = getAvatarUrl(user)
+  const avatarUrl = undefined
   const emailOrPhone = user.email || user.phone
-  const displayName = getDisplayName(user, '')
+  const displayName = ''
   const isAnonymous = user.is_anonymous
   const showDisplayName = displayName && displayName !== emailOrPhone
 
