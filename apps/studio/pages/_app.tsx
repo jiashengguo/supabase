@@ -45,7 +45,7 @@ import { API_URL, BASE_PATH, IS_PLATFORM } from 'lib/constants'
 import { ProfileProvider } from 'lib/profile'
 import { AppPropsWithLayout } from 'types'
 import { SonnerToaster, TooltipProvider } from 'ui'
-import { CommandProvider } from 'ui-patterns/CommandMenu'
+import { CommandProvider } from '@ui-patterns/src/CommandMenu'
 
 dayjs.extend(customParseFormat)
 dayjs.extend(utc)

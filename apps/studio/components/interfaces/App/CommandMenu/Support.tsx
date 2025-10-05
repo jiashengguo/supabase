@@ -2,8 +2,8 @@ import { LifeBuoy } from 'lucide-react'
 import { useMemo } from 'react'
 
 import { IS_PLATFORM } from '@common'
-import type { ICommand } from 'ui-patterns/CommandMenu'
-import { useRegisterCommands } from 'ui-patterns/CommandMenu'
+import type { ICommand } from '@ui-patterns/src/CommandMenu'
+import { useRegisterCommands } from '@ui-patterns/src/CommandMenu'
 import { COMMAND_MENU_SECTIONS } from './CommandMenu.utils'
 
 const useSupportCommands = () => {

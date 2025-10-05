@@ -3,9 +3,9 @@ import { Blocks, Code, Database, History, Search } from 'lucide-react'
 import { useParams } from '@common'
 import { COMMAND_MENU_SECTIONS } from 'components/interfaces/App/CommandMenu/CommandMenu.utils'
 import { orderCommandSectionsByPriority } from 'components/interfaces/App/CommandMenu/ordering'
-import type { CommandOptions } from 'ui-patterns/CommandMenu'
-import { useRegisterCommands } from 'ui-patterns/CommandMenu'
-import { IRouteCommand } from 'ui-patterns/CommandMenu/internal/types'
+import type { CommandOptions } from '@ui-patterns/src/CommandMenu'
+import { useRegisterCommands } from '@ui-patterns/src/CommandMenu'
+import { IRouteCommand } from '@ui-patterns/src/CommandMenu/internal/types'
 
 export function useDatabaseGotoCommands(options?: CommandOptions) {
   let { ref } = useParams()

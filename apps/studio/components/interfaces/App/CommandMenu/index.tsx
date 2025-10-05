@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import { useCommandMenuInitiated } from 'ui-patterns/CommandMenu'
+import { useCommandMenuInitiated } from '@ui-patterns/src/CommandMenu'
 
 const LazyCommandMenu = dynamic(() => import('./CommandMenu'), { ssr: false })
 

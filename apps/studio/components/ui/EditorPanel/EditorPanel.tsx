@@ -36,7 +36,7 @@ import {
   SheetTitle,
   SQL_ICON,
 } from 'ui'
-import { Admonition } from 'ui-patterns'
+import { Admonition } from '@ui-patterns'
 import { ButtonTooltip } from '../ButtonTooltip'
 import { InlineLink } from '../InlineLink'
 import SqlWarningAdmonition from '../SqlWarningAdmonition'

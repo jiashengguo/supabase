@@ -24,7 +24,7 @@ import {
   Theme,
   singleThemes,
 } from 'ui'
-import { useSetCommandMenuOpen } from 'ui-patterns/CommandMenu'
+import { useSetCommandMenuOpen } from '@ui-patterns/src/CommandMenu'
 
 export function UserDropdown() {
   const router = useRouter()

@@ -6,7 +6,7 @@ import CopyButton from './CopyButton'
 
 import Image from 'next/image'
 import { Button, cn } from 'ui'
-import { Admonition } from 'ui-patterns'
+import { Admonition } from '@ui-patterns'
 import { InlineLinkClassName } from './InlineLink'
 
 export type FallbackProps = {

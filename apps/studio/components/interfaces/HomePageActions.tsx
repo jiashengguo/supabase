@@ -16,7 +16,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from 'ui'
-import { Input } from 'ui-patterns/DataInputs/Input'
+import { Input } from '@ui-patterns/src/DataInputs/Input'
 
 interface HomePageActionsProps {
   slug?: string

@@ -12,7 +12,6 @@ import { PROJECT_STATUS } from 'lib/constants'
 import { useAppStateSnapshot } from 'state/app-state'
 import { useDatabaseSelectorStateSnapshot } from 'state/database-selector'
 import { cn, ResizableHandle, ResizablePanel, ResizablePanelGroup } from 'ui'
-import MobileSheetNav from 'ui-patterns/MobileSheetNav/MobileSheetNav'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
 
 import { LoadingState } from './LoadingState'
@@ -218,13 +217,6 @@ const ProjectLayout = forwardRef<HTMLDivElement, PropsWithChildren<ProjectLayout
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
-        <MobileSheetNav
-          open={mobileMenuOpen}
-          onOpenChange={setMobileMenuOpen}
-          stickyBottom={stickySidebarBottom}
-        >
-          {productMenu}
-        </MobileSheetNav>
       </>
     )
   }

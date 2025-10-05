@@ -125,7 +125,6 @@
     "sqlstring": "^2.3.2",
     "tus-js-client": "^4.1.0",
     "ui": "workspace:*",
-    "ui-patterns": "workspace:*",
     "use-debounce": "^7.0.1",
     "use-stick-to-bottom": "^1.1.1",
     "uuid": "^9.0.1",
@@ -138,7 +137,9 @@
     "deepmerge": "^4.2.2",
     "mini-svg-data-uri": "^1.4.3",
     "tailwindcss-radix": "^2.0.0",
-    "@mertasan/tailwindcss-variables": "^2.2.3"
+    "@mertasan/tailwindcss-variables": "^2.2.3",
+    "class-variance-authority": "^0.6.0",
+    "cmdk": "^1.1.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",

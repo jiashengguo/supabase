@@ -16,7 +16,7 @@ import {
   SelectTrigger_Shadcn_,
   SelectValue_Shadcn_,
 } from 'ui'
-import { FormItemLayout } from 'ui-patterns/form/FormItemLayout/FormItemLayout'
+import { FormItemLayout } from '@ui-patterns/src/form/FormItemLayout/FormItemLayout'
 import { DATETIME_TYPES, JSON_TYPES, TEXT_TYPES } from '../SidePanelEditor.constants'
 import { DateTimeInput } from './DateTimeInput'
 import type { EditValue, RowField } from './RowEditor.types'

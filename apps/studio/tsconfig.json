@@ -22,6 +22,8 @@
       "@pg-meta/*": ["./packages/pg-meta/*"],
       "@pg-meta": ["./packages/pg-meta"],
       "@api-types": ["./packages/api-types"],
+      "@ui-patterns": ["./packages/ui-patterns"],
+      "@ui-patterns/*": ["./packages/ui-patterns/*"],
       "@ui/*": ["./../../packages/ui/src/*"] // handle ui package paths
     },
     "useDefineForClassFields": true,

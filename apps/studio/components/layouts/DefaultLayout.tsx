@@ -7,7 +7,6 @@ import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { useAppStateSnapshot } from 'state/app-state'
 import { SidebarProvider } from 'ui'
 import { LayoutHeader } from './ProjectLayout/LayoutHeader'
-import MobileNavigationBar from './ProjectLayout/NavigationBar/MobileNavigationBar'
 import { ProjectContextProvider } from './ProjectLayout/ProjectContext'
 
 export interface DefaultLayoutProps {
@@ -49,7 +48,6 @@ const DefaultLayout = ({ children, headerTitle }: PropsWithChildren<DefaultLayou
           {/* Top Banner */}
 
           <div className="flex-shrink-0">
-            <MobileNavigationBar />
             <LayoutHeader
               showProductMenu={showProductMenu}
               headerTitle={headerTitle}

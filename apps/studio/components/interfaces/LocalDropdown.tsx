@@ -16,7 +16,7 @@ import {
   singleThemes,
   Theme,
 } from 'ui'
-import { useSetCommandMenuOpen } from 'ui-patterns'
+import { useSetCommandMenuOpen } from '@ui-patterns'
 
 export const LocalDropdown = () => {
   const { theme, setTheme } = useTheme()

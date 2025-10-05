@@ -12,8 +12,8 @@ import { useRoleImpersonationStateSnapshot } from 'state/role-impersonation-stat
 import { useTableEditorStateSnapshot } from 'state/table-editor'
 import { useTableEditorTableStateSnapshot } from 'state/table-editor-table'
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
-import { Input } from 'ui-patterns/DataInputs/Input'
-import ConfirmationModal from 'ui-patterns/Dialogs/ConfirmationModal'
+import { Input } from '@ui-patterns/src/DataInputs/Input'
+import ConfirmationModal from '@ui-patterns/src/Dialogs/ConfirmationModal'
 import { DropdownControl } from '../../common/DropdownControl'
 import { formatEstimatedCount } from './Pagination.utils'
 

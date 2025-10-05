@@ -33,7 +33,7 @@ import {
   InnerSideBarFilterSortDropdown,
   InnerSideBarFilterSortDropdownItem,
   InnerSideBarFilters,
-} from 'ui-patterns/InnerSideMenu'
+} from '@ui-patterns/src/InnerSideMenu'
 import { useTableEditorTabsCleanUp } from '../Tabs/Tabs.utils'
 import EntityListItem from './EntityListItem'
 import { TableMenuEmptyState } from './TableMenuEmptyState'
