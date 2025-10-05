@@ -4,7 +4,7 @@ import type { components } from 'data/api'
 import { get, handleError } from 'data/fetchers'
 import type { ResponseError } from 'types'
 import { enumeratedTypesKeys } from './keys'
-import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@supabase/pg-meta/src/constants'
+import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@pg-meta/src/constants'
 
 export type EnumeratedTypesVariables = {
   projectRef?: string

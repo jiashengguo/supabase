@@ -1,4 +1,4 @@
-import { Query } from '@supabase/pg-meta/src/query'
+import { Query } from '@pg-meta/src/query'
 import { QueryClient, useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import { parseSupaTable } from 'components/grid/SupabaseGrid.utils'
 import type { Filter, SupaTable } from 'components/grid/types'

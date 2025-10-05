@@ -1,5 +1,5 @@
-import { Query } from '@supabase/pg-meta/src/query'
-import { getTableRowsSql } from '@supabase/pg-meta/src/query/table-row-query'
+import { Query } from '@pg-meta/src/query'
+import { getTableRowsSql } from '@pg-meta/src/query/table-row-query'
 import {
   useQuery,
   useQueryClient,

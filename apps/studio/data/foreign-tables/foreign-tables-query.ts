@@ -4,7 +4,7 @@ import { PostgresView } from '@supabase/postgres-meta'
 import { get, handleError } from 'data/fetchers'
 import type { ResponseError } from 'types'
 import { foreignTableKeys } from './keys'
-import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@supabase/pg-meta/src/constants'
+import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@pg-meta/src/constants'
 
 export type ForeignTablesVariables = {
   projectRef?: string

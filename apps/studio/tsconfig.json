@@ -18,6 +18,8 @@
     "incremental": true,
     "paths": {
       "@common": ["./packages/common"],
+      "@pg-meta/*": ["./packages/pg-meta/*"],
+      "@pg-meta": ["./packages/pg-meta"],
       "@ui/*": ["./../../packages/ui/src/*"] // handle ui package paths
     },
     "useDefineForClassFields": true,

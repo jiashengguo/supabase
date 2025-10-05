@@ -1,4 +1,4 @@
-import pgMeta from '@supabase/pg-meta'
+import pgMeta from '@pg-meta'
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 
 import { executeSql } from 'data/sql/execute-sql-query'

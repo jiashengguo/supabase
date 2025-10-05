@@ -1,5 +1,5 @@
-import pgMeta from '@supabase/pg-meta'
-import { PGColumn } from '@supabase/pg-meta/src/pg-meta-columns'
+import pgMeta from '@pg-meta'
+import { PGColumn } from '@pg-meta/src/pg-meta-columns'
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 

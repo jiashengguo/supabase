@@ -1,6 +1,6 @@
 import { QueryKey, useQuery, UseQueryOptions } from '@tanstack/react-query'
 
-import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@supabase/pg-meta/src/constants'
+import { DEFAULT_PLATFORM_APPLICATION_NAME } from '@pg-meta/src/constants'
 import { handleError as handleErrorFetchers, post } from 'data/fetchers'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { MB, PROJECT_STATUS } from 'lib/constants'
