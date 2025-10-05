@@ -6,7 +6,6 @@ import { ReactNode, useMemo, useState } from 'react'
 import { useParams } from '@common'
 import { LocalDropdown } from 'components/interfaces/LocalDropdown'
 import { UserDropdown } from 'components/interfaces/UserDropdown'
-import { InlineEditorButton } from 'components/layouts/AppLayout/InlineEditorButton'
 import EditorPanel from 'components/ui/EditorPanel/EditorPanel'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useHotKey } from 'hooks/ui/useHotKey'
@@ -165,26 +164,14 @@ const LayoutHeader = ({
               <>
                 <div className="overflow-hidden flex items-center rounded-full border">
                   <HelpPopover />
-                  <AnimatePresence initial={false}>
-                    {!!projectRef && (
-                      <>
-                        <InlineEditorButton onClick={() => setShowEditorPanel(true)} />
-                      </>
-                    )}
-                  </AnimatePresence>
+                  <AnimatePresence initial={false}></AnimatePresence>
                 </div>
                 <UserDropdown />
               </>
             ) : (
               <>
                 <div className="overflow-hidden flex items-center rounded-full border">
-                  <AnimatePresence initial={false}>
-                    {!!projectRef && (
-                      <>
-                        <InlineEditorButton onClick={() => setShowEditorPanel(true)} />
-                      </>
-                    )}
-                  </AnimatePresence>
+                  <AnimatePresence initial={false}></AnimatePresence>
                 </div>
                 <LocalDropdown />
               </>

@@ -16,7 +16,6 @@ import { ProjectIndexPageLink } from 'data/prefetchers/project.$ref'
 import { useHideSidebar } from 'hooks/misc/useHideSidebar'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { Home } from 'icons'
 import { useAppStateSnapshot } from 'state/app-state'
 import {
   Button,
@@ -229,17 +228,6 @@ const ProjectLinks = () => {
   return (
     <SidebarMenu>
       <SidebarGroup className="gap-0.5">
-        <SideBarNavLink
-          key="home"
-          active={isUndefined(activeRoute) && !isUndefined(router.query.ref)}
-          route={{
-            key: 'HOME',
-            label: 'Project overview',
-            icon: <Home size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
-            link: `/project/${ref}`,
-            linkElement: <ProjectIndexPageLink projectRef={ref} />,
-          }}
-        />
         {toolRoutes.map((route, i) => (
           <SideBarNavLink
             key={`tools-routes-${i}`}

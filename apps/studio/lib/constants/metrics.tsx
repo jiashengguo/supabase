@@ -1,4 +1,3 @@
-import { Auth, Realtime, Storage } from 'icons'
 import { ActivityIcon, DatabaseIcon, HeartIcon, ServerIcon } from 'lucide-react'
 import { ReactNode } from 'react'
 
@@ -26,21 +25,6 @@ export const METRIC_CATEGORIES = {
     label: 'Database API',
     icon: (className?: string) => <DatabaseIcon size={16} className={className} />,
     key: 'api_database',
-  },
-  API_AUTH: {
-    label: 'Authentication',
-    icon: (className?: string) => <Auth size={16} className={className} />,
-    key: 'api_auth',
-  },
-  API_STORAGE: {
-    label: 'Storage',
-    icon: (className?: string) => <Storage size={16} className={className} />,
-    key: 'api_storage',
-  },
-  API_REALTIME: {
-    label: 'Realtime',
-    icon: (className?: string) => <Realtime size={16} className={className} />,
-    key: 'api_realtime',
   },
   INSTANCE: {
     label: 'Instance health',
