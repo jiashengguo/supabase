@@ -1,5 +1,3 @@
-import type { CloudProvider } from 'shared-data'
-
 export type CustomContentTypes = {
   dashboardAuthCustomProvider: string
 
@@ -27,7 +25,6 @@ export type CustomContentTypes = {
 
   logsDefaultQuery: string
 
-  infraCloudProviders: CloudProvider[]
   infraAwsNimbusLabel: string
 
   sslCertificateUrl: string

@@ -41,7 +41,7 @@ import { GlobalErrorBoundaryState } from 'components/ui/GlobalErrorBoundaryState
 import { useRootQueryClient } from 'data/query-client'
 import { customFont, sourceCodePro } from 'fonts'
 import { AuthProvider } from 'lib/auth'
-import { API_URL, BASE_PATH, IS_PLATFORM, useDefaultProvider } from 'lib/constants'
+import { API_URL, BASE_PATH, IS_PLATFORM } from 'lib/constants'
 import { ProfileProvider } from 'lib/profile'
 import { AppPropsWithLayout } from 'types'
 import { SonnerToaster, TooltipProvider } from 'ui'
@@ -90,8 +90,6 @@ function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   }
 
   const isTestEnv = process.env.NEXT_PUBLIC_NODE_ENV === 'test'
-
-  const cloudProvider = useDefaultProvider()
 
   return (
     <ErrorBoundary FallbackComponent={GlobalErrorBoundaryState} onError={errorBoundaryHandler}>

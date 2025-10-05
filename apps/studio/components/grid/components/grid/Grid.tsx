@@ -121,7 +121,7 @@ export const Grid = memo(
           className={cn(
             'flex flex-col relative transition-colors',
             containerClass,
-            isTableEmpty && 'border-2 border-dashed border-brand-600'
+            isTableEmpty && false && 'border-2 border-dashed border-brand-600'
           )}
           style={{ width: width || '100%', height: height || '50vh' }}
         >
