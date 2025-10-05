@@ -1,4 +1,4 @@
-const config = require('config/tailwind.config')
+const config = require('./packages/config/tailwind.config')
 
 module.exports = config({
   content: [
