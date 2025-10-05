@@ -1,4 +1,4 @@
-import { components } from 'api-types'
+import { components } from '@api-types'
 import apiWrapper from 'lib/api/apiWrapper'
 import { NextApiRequest, NextApiResponse } from 'next'
 

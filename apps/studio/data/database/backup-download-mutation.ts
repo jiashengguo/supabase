@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { handleError, post } from 'data/fetchers'
 import type { ResponseError } from 'types'
-import { components } from 'api-types'
+import { components } from '@api-types'
 
 export type BackupDownloadVariables = {
   ref: string

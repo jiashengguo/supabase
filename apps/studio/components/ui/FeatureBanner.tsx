@@ -2,7 +2,7 @@ import { X } from 'lucide-react'
 import { ReactNode } from 'react'
 import { motion, HTMLMotionProps } from 'framer-motion'
 
-import { useParams } from 'common/hooks'
+import { useParams } from '@common/hooks'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { Button, cn } from 'ui'
 

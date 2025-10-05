@@ -1,4 +1,4 @@
-import { stripIndent } from 'common-tags'
+import { stripIndent } from '@common-tags'
 import { writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -17,7 +17,7 @@ async function downloadGraphQLSchema() {
 
   try {
     const response = await fetch(schemaEndpoint, {
-	  method: 'POST',
+      method: 'POST',
       body: JSON.stringify({
         query: schemaQuery.trim(),
       }),

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { paths } from 'api-types'
+import { paths } from '@api-types'
 import apiWrapper from 'lib/api/apiWrapper'
 import { PROJECT_REST_URL } from 'lib/constants/api'
 

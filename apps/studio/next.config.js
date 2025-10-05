@@ -494,7 +494,7 @@ const nextConfig = {
     'ui-patterns',
     'common',
     'shared-data',
-    'api-types',
+    '@api-types',
     'icons',
     'libpg-query',
   ],

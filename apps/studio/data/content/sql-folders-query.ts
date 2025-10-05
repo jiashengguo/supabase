@@ -1,6 +1,6 @@
 import { useInfiniteQuery, UseInfiniteQueryOptions } from '@tanstack/react-query'
 
-import { components } from 'api-types'
+import { components } from '@api-types'
 import { get, handleError } from 'data/fetchers'
 import { ResponseError } from 'types'
 import { contentKeys } from './keys'

@@ -34,7 +34,7 @@ import { ErrorInfo, useCallback } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ThemeProvider } from '@common'
-import MetaFaviconsPagesRouter from 'common/MetaFavicons/pages-router'
+import MetaFaviconsPagesRouter from '@common/MetaFavicons/pages-router'
 import { StudioCommandMenu } from 'components/interfaces/App/CommandMenu'
 import { MonacoThemeProvider } from 'components/interfaces/App/MonacoThemeProvider'
 import { GlobalErrorBoundaryState } from 'components/ui/GlobalErrorBoundaryState'

@@ -1,4 +1,4 @@
-import { paths } from 'api-types'
+import { paths } from '@api-types'
 import apiWrapper from 'lib/api/apiWrapper'
 import { NextApiRequest, NextApiResponse } from 'next'
 import type { UserContent } from 'types'

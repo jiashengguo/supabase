@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 
-import { components } from 'api-types'
+import { components } from '@api-types'
 import { get, handleError } from 'data/fetchers'
 import type { Dashboards, LogSqlSnippets, SqlSnippets } from 'types'
 import { contentKeys } from './keys'
