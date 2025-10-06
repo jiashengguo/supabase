@@ -1,5 +1,5 @@
 import { HTMLAttributes, forwardRef } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface Props {
   children: React.ReactNode

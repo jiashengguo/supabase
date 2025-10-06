@@ -18,7 +18,7 @@ import {
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { formatSql } from 'lib/formatSql'
 import { timeout } from 'lib/helpers'
-import { Button } from 'ui'
+import { Button } from '@ui'
 
 export interface TableDefinitionProps {
   entity?: Entity

@@ -7,7 +7,7 @@ import { Markdown } from 'components/interfaces/Markdown'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { formatSql } from 'lib/formatSql'
 import { timeout } from 'lib/helpers'
-import { cn } from 'ui'
+import { cn } from '@ui'
 import { Loading } from '../Loading'
 import { alignEditor } from './CodeEditor.utils'
 

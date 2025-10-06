@@ -3,7 +3,7 @@ import { ComponentProps, ReactNode } from 'react'
 
 import { useParams } from '@common'
 import { useTabsStateSnapshot } from 'state/tabs'
-import { cn } from 'ui'
+import { cn } from '@ui'
 import { ProjectLayoutWithAuth } from '../ProjectLayout/ProjectLayout'
 import { CollapseButton } from '../Tabs/CollapseButton'
 import { EditorTabs } from '../Tabs/Tabs'

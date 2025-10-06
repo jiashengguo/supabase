@@ -22,7 +22,7 @@ import {
   Popover_Shadcn_,
   ScrollArea,
   Skeleton,
-} from 'ui'
+} from '@ui'
 
 interface SchemaSelectorProps {
   className?: string

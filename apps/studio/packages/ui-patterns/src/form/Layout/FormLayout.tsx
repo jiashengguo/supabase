@@ -7,8 +7,8 @@ import {
   FormMessage_Shadcn_,
   Label_Shadcn_,
   cn,
-} from 'ui'
-import { SIZE } from 'ui/src/lib/constants'
+} from '@ui'
+import { SIZE } from '@ui/src/lib/constants'
 
 type Props = {
   align?: 'left' | 'right'

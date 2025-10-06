@@ -1,4 +1,4 @@
-import { Badge, Card } from 'ui'
+import { Badge, Card } from '@ui'
 
 export const ActionCard = (card: {
   icon: JSX.Element

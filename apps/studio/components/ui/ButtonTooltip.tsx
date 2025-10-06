@@ -1,5 +1,5 @@
 import { ComponentProps, ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
-import { Button, Tooltip, TooltipContent, TooltipTrigger, cn } from 'ui'
+import { Button, Tooltip, TooltipContent, TooltipTrigger, cn } from '@ui'
 
 export const ButtonTooltip = forwardRef<
   ElementRef<typeof Button>,

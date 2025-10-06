@@ -1,7 +1,7 @@
 import { Megaphone } from 'lucide-react'
 import { forwardRef, PropsWithChildren, ReactNode } from 'react'
 
-import { Badge, Button, cn, Loading } from 'ui'
+import { Badge, Button, cn, Loading } from '@ui'
 
 interface PanelProps {
   className?: string

@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 import { forwardRef } from 'react'
-import { Alert_Shadcn_, AlertDescription_Shadcn_, AlertTitle_Shadcn_, cn } from 'ui'
+import { Alert_Shadcn_, AlertDescription_Shadcn_, AlertTitle_Shadcn_, cn } from '@ui'
 
 export interface AdmonitionProps {
   type:

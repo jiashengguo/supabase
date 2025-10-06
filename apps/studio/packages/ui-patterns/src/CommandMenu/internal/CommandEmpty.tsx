@@ -2,7 +2,7 @@
 
 import { type PropsWithChildren, type RefObject, useEffect, useState } from 'react'
 
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 import { useQuery } from '../api/hooks/queryHooks'
 

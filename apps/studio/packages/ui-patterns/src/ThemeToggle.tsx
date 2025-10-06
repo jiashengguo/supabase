@@ -13,7 +13,7 @@ import {
   Theme,
   cn,
   themes,
-} from 'ui'
+} from '@ui'
 
 interface ThemeToggleProps {
   forceDark?: boolean

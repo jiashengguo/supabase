@@ -21,7 +21,7 @@ import {
   TabsContent_Shadcn_,
   TabsList_Shadcn_,
   TabsTrigger_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
 import { ActionCard } from './ActionCard'
 import { RecentItems } from './RecentItems'

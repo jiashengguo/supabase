@@ -12,7 +12,7 @@ import { convertByteaToHex } from 'components/interfaces/TableGridEditor/SidePan
 import { EditorTablePageLink } from 'data/prefetchers/project.$ref.editor.$id'
 import { useTableRowsQuery } from 'data/table-rows/table-rows-query'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
-import { Button, cn, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { Button, cn, Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 import ShimmeringLoader from '@ui-patterns/src/ShimmeringLoader'
 
 interface ReferenceRecordPeekProps {

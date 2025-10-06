@@ -9,7 +9,7 @@ import {
   Button,
   Listbox,
   SidePanel,
-} from 'ui'
+} from '@ui'
 
 import { DocsButton } from 'components/ui/DocsButton'
 import InformationBox from 'components/ui/InformationBox'

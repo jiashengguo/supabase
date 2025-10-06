@@ -9,7 +9,7 @@ import {
   getColumnDefaultWidth,
 } from 'components/grid/utils/gridColumns'
 import { useTableEditorTableStateSnapshot } from 'state/table-editor-table'
-import { Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 import { convertByteaToHex } from '../RowEditor.utils'
 
 export interface SelectorGridProps {

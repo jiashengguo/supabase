@@ -25,7 +25,7 @@ import {
   SheetTitle,
   SidePanel,
   Switch,
-} from 'ui'
+} from '@ui'
 import { z } from 'zod'
 import { Input } from '../DataInputs/Input'
 import { InfoTooltip } from '../info-tooltip'

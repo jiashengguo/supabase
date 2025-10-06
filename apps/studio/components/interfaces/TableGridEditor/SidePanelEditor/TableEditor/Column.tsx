@@ -13,7 +13,7 @@ import {
   PopoverTrigger_Shadcn_,
   Popover_Shadcn_,
   cn,
-} from 'ui'
+} from '@ui'
 
 import { useForeignKeyConstraintsQuery } from 'data/database/foreign-key-constraints-query'
 import type { EnumeratedType } from 'data/enumerated-types/enumerated-types-query'

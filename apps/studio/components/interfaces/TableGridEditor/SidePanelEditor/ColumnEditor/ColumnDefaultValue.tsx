@@ -1,5 +1,5 @@
 import { noop } from 'lodash'
-import { Select } from 'ui'
+import { Select } from '@ui'
 
 import type { EnumeratedType } from 'data/enumerated-types/enumerated-types-query'
 import { POSTGRES_DATA_TYPES } from '../SidePanelEditor.constants'

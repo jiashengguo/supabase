@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react'
-import { PopoverContent_Shadcn_, PopoverTrigger_Shadcn_, Popover_Shadcn_, cn } from 'ui'
+import { PopoverContent_Shadcn_, PopoverTrigger_Shadcn_, Popover_Shadcn_, cn } from '@ui'
 
 import { ButtonTooltip } from 'components/ui/ButtonTooltip'
 import type { User } from 'data/auth/users-infinite-query'

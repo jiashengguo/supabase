@@ -15,7 +15,7 @@ import {
   SelectItem_Shadcn_,
   SelectTrigger_Shadcn_,
   SelectValue_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { FormItemLayout } from '@ui-patterns/src/form/FormItemLayout/FormItemLayout'
 import { DATETIME_TYPES, JSON_TYPES, TEXT_TYPES } from '../SidePanelEditor.constants'
 import { DateTimeInput } from './DateTimeInput'

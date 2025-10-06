@@ -1,1 +1,1 @@
-export { LogoLoader as Loading } from 'ui'
+export { LogoLoader as Loading } from '@ui'

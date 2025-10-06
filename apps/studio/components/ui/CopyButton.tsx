@@ -1,7 +1,7 @@
 import { Check, Clipboard } from 'lucide-react'
 import { ComponentProps, forwardRef, useEffect, useState } from 'react'
 
-import { Button, cn, copyToClipboard } from 'ui'
+import { Button, cn, copyToClipboard } from '@ui'
 
 type CopyButtonBaseProps = {
   iconOnly?: boolean

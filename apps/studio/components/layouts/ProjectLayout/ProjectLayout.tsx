@@ -11,7 +11,7 @@ import { useHotKey } from 'hooks/ui/useHotKey'
 import { PROJECT_STATUS } from 'lib/constants'
 import { useAppStateSnapshot } from 'state/app-state'
 import { useDatabaseSelectorStateSnapshot } from 'state/database-selector'
-import { cn, ResizableHandle, ResizablePanel, ResizablePanelGroup } from 'ui'
+import { cn, ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@ui'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
 
 import { LoadingState } from './LoadingState'

@@ -15,7 +15,7 @@ import {
   Popover_Shadcn_,
   ToggleGroup,
   ToggleGroupItem,
-} from 'ui'
+} from '@ui'
 import { Input } from '@ui-patterns/src/DataInputs/Input'
 
 interface HomePageActionsProps {

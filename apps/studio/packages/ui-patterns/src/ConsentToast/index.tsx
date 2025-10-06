@@ -2,7 +2,7 @@
 
 import { useBreakpoint } from '@common'
 import { noop } from 'lodash'
-import { Button } from 'ui'
+import { Button } from '@ui'
 
 interface ConsentToastProps {
   onAccept: () => void

@@ -12,7 +12,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'ui'
+} from '@ui'
 
 interface DownloadResultsButtonProps {
   iconOnly?: boolean

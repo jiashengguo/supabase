@@ -28,7 +28,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   cn,
-} from 'ui'
+} from '@ui'
 import ConfirmModal from '@ui-patterns/src/Dialogs/ConfirmDialog'
 import ConfirmationModal from '@ui-patterns/src/Dialogs/ConfirmationModal'
 import { RoleImpersonationPopover } from '../RoleImpersonationSelector'

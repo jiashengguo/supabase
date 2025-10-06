@@ -1,7 +1,7 @@
 'use client'
 
 import { type PropsWithChildren, forwardRef } from 'react'
-import { CommandItem_Shadcn_, cn } from 'ui'
+import { CommandItem_Shadcn_, cn } from '@ui'
 import { useCrossCompatRouter } from '../api/hooks/useCrossCompatRouter'
 import { useSetCommandMenuOpen } from '../api/hooks/viewHooks'
 import { type ICommand, type IActionCommand, type IRouteCommand } from './types'

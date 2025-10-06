@@ -8,7 +8,7 @@ import {
   PopoverContent_Shadcn_,
   PopoverTrigger_Shadcn_,
   ScrollArea,
-} from 'ui'
+} from '@ui'
 
 interface FilterPopoverProps<T> {
   title?: string

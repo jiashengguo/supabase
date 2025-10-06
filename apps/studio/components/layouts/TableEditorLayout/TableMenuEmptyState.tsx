@@ -2,7 +2,7 @@ import { useParams } from '@common'
 import { Pointer } from 'lucide-react'
 import { useRef } from 'react'
 import { InnerSideBarEmptyPanel } from '@ui-patterns/src/InnerSideMenu'
-import { cn, TreeViewItemVariant } from 'ui'
+import { cn, TreeViewItemVariant } from '@ui'
 import { EntityTypeIcon } from 'components/ui/EntityTypeIcon'
 
 export const TableMenuEmptyState = () => {

@@ -11,7 +11,7 @@ import { useTableRowTruncateMutation } from 'data/table-rows/table-row-truncate-
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import { useGetImpersonatedRoleState } from 'state/role-impersonation-state'
 import { useTableEditorStateSnapshot } from 'state/table-editor'
-import { AlertDescription_Shadcn_, AlertTitle_Shadcn_, Alert_Shadcn_, Button, Checkbox } from 'ui'
+import { AlertDescription_Shadcn_, AlertTitle_Shadcn_, Alert_Shadcn_, Button, Checkbox } from '@ui'
 import ConfirmationModal from '@ui-patterns/src/Dialogs/ConfirmationModal'
 
 export type DeleteConfirmationDialogsProps = {

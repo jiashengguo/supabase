@@ -1,6 +1,6 @@
 import { useParams } from '@common'
 import { useState } from 'react'
-import { Button } from 'ui'
+import { Button } from '@ui'
 
 import { useForeignKeyConstraintsQuery } from 'data/database/foreign-key-constraints-query'
 import { useTableEditorQuery } from 'data/table-editor/table-editor-query'

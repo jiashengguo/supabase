@@ -20,8 +20,8 @@ import {
   Form_Shadcn_,
   Input_Shadcn_,
   cn,
-} from 'ui'
-import { DialogHeader } from 'ui/src/components/shadcn/ui/dialog'
+} from '@ui'
+import { DialogHeader } from '@ui/src/components/shadcn/ui/dialog'
 import { z } from 'zod'
 import { Admonition } from './../admonition'
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Fragment, ReactNode } from 'react'
 
 import { useParams } from '@common'
-import { cn } from 'ui'
+import { cn } from '@ui'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +11,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage as BreadcrumbPageItem,
   BreadcrumbSeparator,
-} from 'ui/src/components/shadcn/ui/breadcrumb'
+} from '@ui/src/components/shadcn/ui/breadcrumb'
 import { ScaffoldDescription, ScaffoldTitle } from '../Scaffold'
 
 interface PageHeaderProps {

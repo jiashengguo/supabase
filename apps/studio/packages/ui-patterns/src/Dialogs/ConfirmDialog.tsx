@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Button, Form, Modal } from 'ui'
+import { Button, Form, Modal } from '@ui'
 
 // [Joshen] As of 280222, let's just use ConfirmationModal as the one and only confirmation modal (Deprecate this)
 

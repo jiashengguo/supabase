@@ -1,5 +1,5 @@
 import { JSX, ReactNode } from 'react'
-import { Badge, Card, cn } from 'ui'
+import { Badge, Card, cn } from '@ui'
 
 export const ActionCard = (card: {
   icon: JSX.Element

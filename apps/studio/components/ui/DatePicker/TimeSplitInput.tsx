@@ -3,7 +3,7 @@ import { Clock } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 
-import { cn } from 'ui'
+import { cn } from '@ui'
 import type { TimeSplitInputProps, TimeType } from './DatePicker.types'
 
 /**

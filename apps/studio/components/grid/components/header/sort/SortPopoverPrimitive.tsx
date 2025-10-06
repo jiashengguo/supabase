@@ -10,7 +10,7 @@ import {
   PopoverSeparator_Shadcn_,
   PopoverTrigger_Shadcn_,
   Popover_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { DropdownControl } from '../../common/DropdownControl'
 import SortRow from './SortRow'
 

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from 'ui'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@ui'
 
 interface DropdownControlProps {
   options: {

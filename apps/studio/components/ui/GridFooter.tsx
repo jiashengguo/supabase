@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 export const GridFooter = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import { Input, SidePanel } from 'ui'
+import { Input, SidePanel } from '@ui'
 
 import { useSchemaCreateMutation } from 'data/database/schema-create-mutation'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'

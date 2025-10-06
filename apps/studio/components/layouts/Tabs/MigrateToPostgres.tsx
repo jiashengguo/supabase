@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { BaggageClaim, BookOpen } from 'lucide-react'
-import { Button } from 'ui'
+import { Button } from '@ui'
 
 // not in use yet
 export const MigrateToPostgres = () => (

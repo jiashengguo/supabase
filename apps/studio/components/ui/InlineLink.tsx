@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface InlineLinkProps {
   href: string

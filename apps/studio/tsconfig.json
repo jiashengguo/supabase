@@ -24,7 +24,8 @@
       "@api-types": ["./packages/api-types"],
       "@ui-patterns": ["./packages/ui-patterns"],
       "@ui-patterns/*": ["./packages/ui-patterns/*"],
-      "@ui/*": ["./../../packages/ui/src/*"] // handle ui package paths
+      "@ui": ["./packages/ui"],
+      "@ui/*": ["./packages/ui/*"] // handle ui package paths
     },
     "useDefineForClassFields": true,
     "plugins": [

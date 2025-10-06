@@ -12,7 +12,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from 'ui'
+} from '@ui'
 
 /**
  * There's timestamp rounding that kicks in if there are more than 50 data points

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface FeaturePreviewSidebarPanelProps {
   title: string

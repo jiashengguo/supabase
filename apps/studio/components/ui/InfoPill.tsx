@@ -1,12 +1,12 @@
 import { ExternalLink } from 'lucide-react'
 import React, { ReactNode } from 'react'
 
-import { Badge } from 'ui/src/components/shadcn/ui/badge'
+import { Badge } from '@ui/src/components/shadcn/ui/badge'
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from 'ui/src/components/shadcn/ui/hover-card'
+} from '@ui/src/components/shadcn/ui/hover-card'
 
 interface Link {
   url: string

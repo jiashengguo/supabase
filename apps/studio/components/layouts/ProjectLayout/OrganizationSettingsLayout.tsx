@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 
 import { useParams } from '@common'
 import { useCurrentPath } from 'hooks/misc/useCurrentPath'
-import { NavMenu, NavMenuItem } from 'ui'
+import { NavMenu, NavMenuItem } from '@ui'
 import { ScaffoldContainerLegacy, ScaffoldTitle } from '../Scaffold'
 
 function OrganizationSettingsLayout({ children }: PropsWithChildren) {

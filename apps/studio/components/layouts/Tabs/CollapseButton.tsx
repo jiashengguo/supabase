@@ -1,7 +1,7 @@
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 
 import { useAppStateSnapshot } from 'state/app-state'
-import { cn, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { cn, Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 
 export function CollapseButton({ hideTabs }: { hideTabs: boolean }) {
   const { showSidebar, setShowSidebar } = useAppStateSnapshot()

@@ -5,7 +5,7 @@ import { LOCAL_STORAGE_KEYS, useParams } from '@common'
 import { Sidebar } from 'components/interfaces/Sidebar'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
 import { useAppStateSnapshot } from 'state/app-state'
-import { SidebarProvider } from 'ui'
+import { SidebarProvider } from '@ui'
 import { LayoutHeader } from './ProjectLayout/LayoutHeader'
 import { ProjectContextProvider } from './ProjectLayout/ProjectContext'
 

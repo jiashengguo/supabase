@@ -13,7 +13,7 @@ import {
   Popover_Shadcn_,
   PopoverContent_Shadcn_,
   PopoverTrigger_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { TimestampInfo, timestampLocalFormatter } from '@ui-patterns'
 import { Input } from '@ui-patterns/src/DataInputs/Input'
 import { BlockKeys } from '../common/BlockKeys'

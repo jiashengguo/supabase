@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
   singleThemes,
   Theme,
-} from 'ui'
+} from '@ui'
 import { useSetCommandMenuOpen } from '@ui-patterns'
 
 export const LocalDropdown = () => {

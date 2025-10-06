@@ -4,7 +4,7 @@ import { CSSProperties, ComponentType, MutableRefObject, ReactNode, memo, useRef
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { VariableSizeList, areEqual } from 'react-window'
 import InfiniteLoader from 'react-window-infinite-loader'
-import { Skeleton } from 'ui'
+import { Skeleton } from '@ui'
 
 /**
  * Note that the loading more logic of this component works best with a cursor-based

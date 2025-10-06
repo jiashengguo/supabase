@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import CopyButton from './CopyButton'
 
 import Image from 'next/image'
-import { Button, cn } from 'ui'
+import { Button, cn } from '@ui'
 import { Admonition } from '@ui-patterns'
 import { InlineLinkClassName } from './InlineLink'
 

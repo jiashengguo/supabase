@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Input,
-} from 'ui'
+} from '@ui'
 import { getColumnType } from './DateTimeInput.utils'
 
 interface DateTimeInputProps {

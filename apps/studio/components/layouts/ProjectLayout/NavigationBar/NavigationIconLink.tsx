@@ -7,7 +7,7 @@ import {
   forwardRef,
   isValidElement,
 } from 'react'
-import { cn, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { cn, Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 
 import type { Route } from 'components/ui/ui.types'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'

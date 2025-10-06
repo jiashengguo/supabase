@@ -5,7 +5,7 @@ import {
   Alert_Shadcn_,
   Button,
   WarningIcon,
-} from 'ui'
+} from '@ui'
 
 export const RestorePaidPlanProjectNotice = () => {
   return (

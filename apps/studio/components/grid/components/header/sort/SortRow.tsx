@@ -5,7 +5,7 @@ import { useDrag, useDrop } from 'react-dnd'
 
 import type { DragItem, Sort } from 'components/grid/types'
 import { useTableEditorTableStateSnapshot } from 'state/table-editor-table'
-import { Button, Toggle } from 'ui'
+import { Button, Toggle } from '@ui'
 
 export interface SortRowProps {
   index: number

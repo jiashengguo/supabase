@@ -4,7 +4,7 @@ import SVG from 'react-inlinesvg'
 
 import { useParams } from '@common'
 import { BASE_PATH } from 'lib/constants'
-import { Badge, Button, cn } from 'ui'
+import { Badge, Button, cn } from '@ui'
 import type { ForeignKey } from '../../ForeignKeySelector/ForeignKeySelector.types'
 
 interface ForeignKeyProps {

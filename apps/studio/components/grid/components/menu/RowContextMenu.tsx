@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import type { SupaRow } from 'components/grid/types'
 import { useTableEditorStateSnapshot } from 'state/table-editor'
 import { useTableEditorTableStateSnapshot } from 'state/table-editor-table'
-import { copyToClipboard } from 'ui'
+import { copyToClipboard } from '@ui'
 import { ROW_CONTEXT_MENU_ID } from '.'
 import { formatClipboardValue } from '../../utils/common'
 

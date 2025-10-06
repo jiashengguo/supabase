@@ -1,5 +1,5 @@
 import { Check, Minus } from 'lucide-react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 export interface RoleImpersonationRadioProps<T extends string> {
   label?: string

@@ -1,5 +1,5 @@
 import type { RenderEditCellProps } from 'react-data-grid'
-import { Select } from 'ui'
+import { Select } from '@ui'
 
 interface SelectEditorProps<TRow, TSummaryRow = unknown>
   extends RenderEditCellProps<TRow, TSummaryRow> {

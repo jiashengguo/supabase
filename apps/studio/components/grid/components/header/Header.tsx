@@ -32,7 +32,7 @@ import {
   DropdownMenuTrigger,
   Separator,
   SonnerProgress,
-} from 'ui'
+} from '@ui'
 import { FilterPopover } from './filter/FilterPopover'
 import { formatRowsForCSV } from './Header.utils'
 import { SortPopover } from './sort/SortPopover'

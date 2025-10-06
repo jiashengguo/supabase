@@ -1,5 +1,5 @@
 import { ElementRef, forwardRef } from 'react'
-import { Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 
 const SVG = forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>((props, ref) => (
   <svg

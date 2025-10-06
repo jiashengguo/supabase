@@ -3,7 +3,7 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 import { useBreakpoint } from '@common'
-import { CommandInput_Shadcn_, cn } from 'ui'
+import { CommandInput_Shadcn_, cn } from '@ui'
 
 import { useQuery, useSetQuery } from './hooks/queryHooks'
 

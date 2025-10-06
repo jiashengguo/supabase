@@ -36,7 +36,7 @@ import {
   SidebarMenuItem,
   Sidebar as SidebarPrimitive,
   useSidebar,
-} from 'ui'
+} from '@ui'
 
 export const ICON_SIZE = 32
 export const ICON_STROKE_WIDTH = 1.5

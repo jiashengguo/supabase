@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
-import { Badge, Button, Menu } from 'ui'
+import { Badge, Button, Menu } from '@ui'
 
 interface ProductMenuItemProps {
   name: string | ReactNode

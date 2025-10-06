@@ -16,7 +16,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from 'ui'
+} from '@ui'
 
 interface ColumnMenuProps {
   column: CalculatedColumn<any, unknown>

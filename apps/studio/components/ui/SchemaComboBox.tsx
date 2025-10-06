@@ -18,7 +18,7 @@ import {
   PopoverTrigger_Shadcn_,
   Popover_Shadcn_,
   ScrollArea,
-} from 'ui'
+} from '@ui'
 
 interface SchemaComboBoxProps {
   className?: string

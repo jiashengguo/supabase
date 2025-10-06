@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react'
 
-import { CommandGroup_Shadcn_, cn } from 'ui'
+import { CommandGroup_Shadcn_, cn } from '@ui'
 
 const CommandGroup = forwardRef<
   React.ElementRef<typeof CommandGroup_Shadcn_>,

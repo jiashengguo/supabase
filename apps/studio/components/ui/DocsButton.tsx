@@ -1,5 +1,5 @@
 import { BookOpen } from 'lucide-react'
-import { Button } from 'ui'
+import { Button } from '@ui'
 
 interface DocsButtonProps {
   href: string

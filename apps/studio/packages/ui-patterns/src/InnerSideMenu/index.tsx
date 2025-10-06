@@ -17,7 +17,7 @@ import {
   TooltipTrigger,
   TreeViewItemVariant,
   cn,
-} from 'ui'
+} from '@ui'
 import ShimmeringLoader from '../ShimmeringLoader'
 
 const InnerSideBarTitle = forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<'span'>>(

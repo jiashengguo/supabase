@@ -26,7 +26,7 @@ import {
   PopoverContent_Shadcn_,
   PopoverTrigger_Shadcn_,
   Popover_Shadcn_,
-} from 'ui'
+} from '@ui'
 import {
   InnerSideBarEmptyPanel,
   InnerSideBarFilterSearchInput,

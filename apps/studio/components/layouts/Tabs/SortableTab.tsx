@@ -7,7 +7,7 @@ import { useMemo } from 'react'
 import { EntityTypeIcon } from 'components/ui/EntityTypeIcon'
 import { useQuerySchemaState } from 'hooks/misc/useSchemaQueryState'
 import { useTabsStateSnapshot, type Tab } from 'state/tabs'
-import { cn, TabsTrigger_Shadcn_ } from 'ui'
+import { cn, TabsTrigger_Shadcn_ } from '@ui'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
 
 /**

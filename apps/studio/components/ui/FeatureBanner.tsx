@@ -4,7 +4,7 @@ import { motion, HTMLMotionProps } from 'framer-motion'
 
 import { useParams } from '@common/hooks'
 import { useLocalStorageQuery } from 'hooks/misc/useLocalStorage'
-import { Button, cn } from 'ui'
+import { Button, cn } from '@ui'
 
 // Base props common to all feature banners
 interface BaseFeatureBannerProps extends HTMLMotionProps<'div'> {

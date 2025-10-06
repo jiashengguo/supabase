@@ -10,8 +10,8 @@ import {
   DialogSectionSeparator,
   DialogTitle,
   cn,
-} from 'ui'
-import { DialogDescription, DialogHeader } from 'ui/src/components/shadcn/ui/dialog'
+} from '@ui'
+import { DialogDescription, DialogHeader } from '@ui/src/components/shadcn/ui/dialog'
 import { Admonition } from './../admonition'
 
 export interface ConfirmationModalProps {

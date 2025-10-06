@@ -1,4 +1,4 @@
-import { Button, cn } from 'ui'
+import { Button, cn } from '@ui'
 
 export interface NoSearchResultsProps {
   searchString: string

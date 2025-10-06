@@ -10,8 +10,8 @@ import {
   PopoverContent_Shadcn_,
   PopoverTrigger_Shadcn_,
   Popover_Shadcn_,
-} from 'ui'
-import { ButtonProps } from 'ui/src/components/Button/Button'
+} from '@ui'
+import { ButtonProps } from '@ui/src/components/Button/Button'
 import { TimeSplitInput } from './TimeSplitInput'
 
 export type DatePickerToFrom = { to: string | null; from: string | null }

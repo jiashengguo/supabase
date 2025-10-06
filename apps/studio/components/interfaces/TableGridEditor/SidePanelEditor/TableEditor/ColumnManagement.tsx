@@ -22,7 +22,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   WarningIcon,
-} from 'ui'
+} from '@ui'
 import { generateColumnField } from '../ColumnEditor/ColumnEditor.utils'
 import { ForeignKeySelector } from '../ForeignKeySelector/ForeignKeySelector'
 import type { ForeignKey } from '../ForeignKeySelector/ForeignKeySelector.types'

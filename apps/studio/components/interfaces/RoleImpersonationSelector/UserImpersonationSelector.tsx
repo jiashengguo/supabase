@@ -25,7 +25,7 @@ import {
   TabsContent_Shadcn_,
   TabsList_Shadcn_,
   TabsTrigger_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { InfoTooltip } from '@ui-patterns/src/info-tooltip'
 
 type AuthenticatorAssuranceLevels = 'aal1' | 'aal2'

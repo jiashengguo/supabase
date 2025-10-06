@@ -6,8 +6,8 @@ import React, {
   forwardRef,
   useState,
 } from 'react'
-import { Button, Input_Shadcn_, cn, copyToClipboard } from 'ui'
-import styleHandler from 'ui/src/lib/theme/styleHandler'
+import { Button, Input_Shadcn_, cn, copyToClipboard } from '@ui'
+import styleHandler from '@ui/src/lib/theme/styleHandler'
 
 export const HIDDEN_PLACEHOLDER = '**** **** **** ****'
 

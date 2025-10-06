@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { ControllerRenderProps, FieldPath, FieldValues } from 'react-hook-form'
-import { FormControl_Shadcn_, FormField_Shadcn_, FormItem_Shadcn_ } from 'ui'
+import { FormControl_Shadcn_, FormField_Shadcn_, FormItem_Shadcn_ } from '@ui'
 
 /**
  * Handles react-hook-form field type for FormItem<name> components

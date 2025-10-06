@@ -2,7 +2,7 @@
 
 import { forwardRef, useRef } from 'react'
 
-import { CommandList_Shadcn_, cn } from 'ui'
+import { CommandList_Shadcn_, cn } from '@ui'
 
 import { CommandItem } from '../internal/Command'
 import { CommandEmpty } from '../internal/CommandEmpty'

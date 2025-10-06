@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Input,
-} from 'ui'
+} from '@ui'
 import type { Suggestion } from './ColumnEditor.types'
 
 const MAX_SUGGESTIONS = 3

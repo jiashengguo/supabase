@@ -1,7 +1,7 @@
 import { AlertOctagon, Lock, ShieldOff } from 'lucide-react'
 
 import { DocsButton } from 'components/ui/DocsButton'
-import { Alert } from 'ui'
+import { Alert } from '@ui'
 
 export default function RLSDisableModalContent() {
   return (

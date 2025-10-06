@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { cn, copyToClipboard, Tooltip, TooltipContent, TooltipTrigger } from 'ui'
+import { cn, copyToClipboard, Tooltip, TooltipContent, TooltipTrigger } from '@ui'
 
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'

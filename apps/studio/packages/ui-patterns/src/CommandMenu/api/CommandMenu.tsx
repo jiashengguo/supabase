@@ -7,7 +7,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 
 import { useBreakpoint } from '@common'
 import useDragToClose from '@common/hooks/useDragToClose'
-import { Button, Command_Shadcn_, Dialog, DialogContent, cn } from 'ui'
+import { Button, Command_Shadcn_, Dialog, DialogContent, cn } from '@ui'
 
 import { useCurrentPage, usePageComponent, usePopPage } from './hooks/pagesHooks'
 import { useQuery, useSetQuery } from './hooks/queryHooks'

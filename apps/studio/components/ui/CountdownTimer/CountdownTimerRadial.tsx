@@ -1,5 +1,5 @@
 import { PolarGrid, RadialBar, RadialBarChart } from 'recharts'
-import { ChartConfig, ChartContainer } from 'ui'
+import { ChartConfig, ChartContainer } from '@ui'
 
 interface CountdownTimerRadialProps {
   progress: number

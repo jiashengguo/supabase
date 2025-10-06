@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
   Theme,
   singleThemes,
-} from 'ui'
+} from '@ui'
 import { useSetCommandMenuOpen } from '@ui-patterns/src/CommandMenu'
 
 export function UserDropdown() {

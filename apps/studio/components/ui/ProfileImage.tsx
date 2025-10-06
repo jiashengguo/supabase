@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ReactNode, useState } from 'react'
 
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface ProfileImageProps {
   alt?: string

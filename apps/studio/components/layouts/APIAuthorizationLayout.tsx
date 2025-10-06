@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import Head from 'next/head'
 import Image from 'next/legacy/image'
 import type { PropsWithChildren } from 'react'
-import { Separator } from 'ui'
+import { Separator } from '@ui'
 
 export interface APIAuthorizationLayoutProps {}
 

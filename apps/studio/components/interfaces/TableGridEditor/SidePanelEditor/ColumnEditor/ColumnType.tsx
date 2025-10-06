@@ -35,7 +35,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   cn,
-} from 'ui'
+} from '@ui'
 import {
   POSTGRES_DATA_TYPES,
   POSTGRES_DATA_TYPE_OPTIONS,

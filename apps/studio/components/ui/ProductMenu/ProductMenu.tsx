@@ -1,4 +1,4 @@
-import { Badge, Menu } from 'ui'
+import { Badge, Menu } from '@ui'
 
 import type { ProductMenuGroup } from './ProductMenu.types'
 import ProductMenuItem from './ProductMenuItem'

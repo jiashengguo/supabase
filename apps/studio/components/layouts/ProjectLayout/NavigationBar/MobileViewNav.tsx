@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { useAppStateSnapshot } from 'state/app-state'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface Props {
   title?: string

@@ -18,7 +18,7 @@ import {
 import { useEnumeratedTypesQuery } from 'data/enumerated-types/enumerated-types-query'
 import { useSelectedProjectQuery } from 'hooks/misc/useSelectedProject'
 import type { Dictionary } from 'types'
-import { Button, Checkbox, Input, SidePanel, Toggle } from 'ui'
+import { Button, Checkbox, Input, SidePanel, Toggle } from '@ui'
 import ActionBar from '../ActionBar'
 import type { ForeignKey } from '../ForeignKeySelector/ForeignKeySelector.types'
 import { formatForeignKeys } from '../ForeignKeySelector/ForeignKeySelector.utils'

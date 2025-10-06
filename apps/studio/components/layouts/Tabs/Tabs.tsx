@@ -23,7 +23,7 @@ import {
   Tabs_Shadcn_,
   TabsList_Shadcn_,
   TabsTrigger_Shadcn_,
-} from 'ui'
+} from '@ui'
 import { useEditorType } from '../editors/EditorsLayout.hooks'
 import { CollapseButton } from './CollapseButton'
 import { SortableTab } from './SortableTab'

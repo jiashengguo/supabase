@@ -1,5 +1,5 @@
 import { forwardRef, HTMLAttributes } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 export const MAX_WIDTH_CLASSES = 'mx-auto w-full max-w-[1200px]'
 export const PADDING_CLASSES = 'px-4 @lg:px-6 @xl:px-10'

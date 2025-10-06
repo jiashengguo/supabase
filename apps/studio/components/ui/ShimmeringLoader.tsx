@@ -1,5 +1,5 @@
 import { useSynchronizedAnimation } from 'hooks/misc/useSynchronizedAnimation'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 export interface ShimmeringLoader {
   className?: string

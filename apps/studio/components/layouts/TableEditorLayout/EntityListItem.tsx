@@ -43,7 +43,7 @@ import {
   TooltipContent,
   TooltipTrigger,
   TreeViewItemVariant,
-} from 'ui'
+} from '@ui'
 
 export interface EntityListItemProps {
   id: number | string

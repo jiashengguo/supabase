@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Skeleton } from 'ui'
+import { Skeleton } from '@ui'
 
 const EditorMenuListSkeleton = memo(function EditorMenuListSkeleton() {
   const items = [

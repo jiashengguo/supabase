@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { cn } from 'ui'
+import { cn } from '@ui'
 
 interface DisableInteractionProps extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean

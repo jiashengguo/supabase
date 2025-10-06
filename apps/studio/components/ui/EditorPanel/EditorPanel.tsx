@@ -35,7 +35,7 @@ import {
   SheetHeader,
   SheetTitle,
   SQL_ICON,
-} from 'ui'
+} from '@ui'
 import { Admonition } from '@ui-patterns'
 import { ButtonTooltip } from '../ButtonTooltip'
 import { InlineLink } from '../InlineLink'
